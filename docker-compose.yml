@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  nextjs:
+    ports:
+      - "5000:3000"
+    build: .
+    environment:
+      - "NEXT_PUBLIC_CURRENT_ENV=Docker"

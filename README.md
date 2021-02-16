@@ -10,3 +10,6 @@ Website for Online Radio Search
 1. `docker run -p 5000:3000 ors-website`
 
 To close the app press `ctrl + c`
+
+
+docker run -p 5000:3000 -e NEXT_PUBLIC_CURRENT_ENV=Dockerizedaa ors-website
