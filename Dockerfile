@@ -12,12 +12,10 @@ COPY /public ./public
 COPY /styles ./styles
 COPY /next.config.js ./
 
-RUN npm install --only=prod && npm run build
-
-RUN ls -la
-RUN du -sh node_modules
+RUN npm install && npm run build
 
 FROM base AS production
+ENV NODE_ENV=production
 WORKDIR /app
 
 COPY --from=build /build/package*.json ./
