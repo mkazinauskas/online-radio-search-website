@@ -3,6 +3,7 @@ import getConfig from 'next/config'
 import "tailwindcss/tailwind.css";
 import Footer from '../components/footer';
 import NavBar from '../components/navbar';
+import SectionAboutUs from '../components/main/section-about-us';
 
 function Home({ contactUsLink }) {
   return (
@@ -13,7 +14,7 @@ function Home({ contactUsLink }) {
       </Head>
 
       <header class="bg-gray-800 pattern">
-        <div class="container px-6 mx-auto">
+        <div class="container px-6 md:pb-10 mx-auto">
 
           <nav class="flex flex-col md:py-10 py-5 sm:flex-row sm:justify-between sm:items-center">
             <div>
@@ -25,45 +26,30 @@ function Home({ contactUsLink }) {
             </div>
           </nav>
 
-          <div class="flex flex-col items-center md:py-15 pt-10 md:h-128">
-            <h1 class="text-white mt-4 text-xl font-semibold dark:text-white text-center">Search for thausands of radio stations wordwide</h1>
+          <div class="flex flex-col items-center md:py-15 pt-10 md:h-128 text-center">
+            <h1 class="text-white mt-4 text-xl font-semibold dark:text-white">Search for thousands of radio stations wordwide</h1>
+            <p class="text-white mt-3">We share music, news, podcasts and everything what you need to have a good day!</p>
           </div>
 
           <div class="flex flex-col items-center md:py-15 py-10 md:h-128">
-            <div class="max-w-lg h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
+            <div class="w-full md:max-w-lg h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
               <input type="search" name="search" id="search" placeholder="Search"
                 class="appearance-none outline-none focus:outline-none active:outline-none" />
+
               <button type="submit" class="ml-1 outline-none focus:outline-none active:outline-none">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </button>
+
             </div>
           </div>
 
         </div>
       </header>
 
-
-      <section class="bg-gray-100 dark:bg-gray-900 lg:py-12 lg:flex lg:justify-center">
-        <div class="bg-white dark:bg-gray-800 lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
-          <div class="lg:w-1/2">
-            <div class="h-64 bg-cover lg:rounded-lg lg:h-full" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80')" }}></div>
-          </div>
-
-          <div class="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white md:text-3xl">Build Your New <span class="text-indigo-600 dark:text-indigo-400">Idea</span></h2>
-            <p class="mt-4 text-gray-600 dark:text-gray-400">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur.</p>
-
-            <div class="mt-8">
-              <a href="#" class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded hover:bg-gray-700">Start Now</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
+      <SectionAboutUs />
 
       <section class="bg-white dark:bg-gray-800">
         <div class="container px-6 py-8 mx-auto">
