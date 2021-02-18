@@ -27,14 +27,14 @@ function Home({ contactUsLink }) {
           </nav>
 
           <div class="flex flex-col items-center md:py-15 pt-10 md:h-128 text-center">
-            <h1 class="text-white mt-4 text-xl font-semibold dark:text-white">Search for thousands of radio stations wordwide</h1>
-            <p class="text-white mt-3">We share music, news, podcasts and everything what you need to have a good day!</p>
+            <h1 class="text-white mt-4 text-xl font-semibold dark:text-white">We gather all the stations of the world in one place</h1>
+            <p class="text-white mt-3">Search for thousands of radio stations wordwide. We share music, news, podcasts and everything what you need to have a good day!</p>
           </div>
 
           <div class="flex flex-col items-center md:py-15 py-10 md:h-128">
             <div class="w-full md:max-w-lg h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
-              <input type="search" name="search" id="search" placeholder="Search"
-                class="appearance-none outline-none focus:outline-none active:outline-none" />
+              <input type="search" name="search" id="search" placeholder="Search for radio station, podcast, news..."
+                class="appearance-none outline-none w-full focus:outline-none active:outline-none" />
 
               <button type="submit" class="ml-1 outline-none focus:outline-none active:outline-none">
 
