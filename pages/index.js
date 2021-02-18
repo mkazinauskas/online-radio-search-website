@@ -17,34 +17,30 @@ function Home({ contactUsLink }) {
 
           <nav class="flex flex-col md:py-10 py-5 sm:flex-row sm:justify-between sm:items-center">
             <div>
-              <a href="#" class="text-2xl font-semibold text-white hover:text-gray-300">Online Radio Search</a>
+              <a href="#" class="text-xl md:text-2xl font-semibold text-white hover:text-gray-300">Online Radio Search</a>
             </div>
 
-            <div class="flex items-center mt-2 sm:mt-0">
+            <div class="flex items-center mt-2">
               <a href="#" class="px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 transform border-2 rounded hover:bg-gray-700">Downlaod App</a>
             </div>
           </nav>
 
-          <div class="w-full h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
-            <input type="search" name="search" id="search" placeholder="Search"
-              class="appearance-none w-full outline-none focus:outline-none active:outline-none" />
-            <button type="submit" class="ml-1 outline-none focus:outline-none active:outline-none">
-
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
-          </div>
-          
-          <div class="flex flex-col items-center md:py-20 py-10 md:h-128 md:flex-row">
-
-              <h2 class="text-3xl font-semibold text-gray-100">Welcome to online radio search directory</h2>
-
-              <p class="mt-3 text-gray-100">Discover over 60k online radio stations! New stations are being added daily</p>
-
+          <div class="flex flex-col items-center md:py-15 pt-10 md:h-128">
+            <h1 class="text-white mt-4 text-xl font-semibold dark:text-white text-center">Search for thausands of radio stations wordwide</h1>
           </div>
 
-         
+          <div class="flex flex-col items-center md:py-15 py-10 md:h-128">
+            <div class="max-w-lg h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
+              <input type="search" name="search" id="search" placeholder="Search"
+                class="appearance-none outline-none focus:outline-none active:outline-none" />
+              <button type="submit" class="ml-1 outline-none focus:outline-none active:outline-none">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
 
         </div>
       </header>
