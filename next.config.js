@@ -5,5 +5,6 @@ module.exports = {
     },
     publicRuntimeConfig: {
         CURRENT_ENV: process.env.NEXT_PUBLIC_CURRENT_ENV,
+        CONTACT_US_LINK: process.env.NEXT_PUBLIC_CONTACT_US_LINK
     },
 }
