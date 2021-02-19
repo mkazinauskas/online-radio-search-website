@@ -21,7 +21,7 @@ class NavBar extends Component {
                             <div className="flex items-center">
                                 <a className="text-sm font-bold text-gray-800 dark:text-white lg:text-2xl hover:text-gray-700 dark:hover:text-gray-300" href="/">OnlineRadioSearch.com</a>
 
-                                <div className="hidden mx-5 xl:mx-10 md:block">
+                                <div className="hidden mx-5 xl:mx-10 lg:block">
                                     <div className="relative">
                                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                             <svg className="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
@@ -51,14 +51,14 @@ class NavBar extends Component {
                                 <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 hover:underline lg:mx-4 lg:my-0" href={contactUsLink} target="_blank">Contact</a>
                             </div>
 
-                            <div className="flex items-center py-2 -mx-1 md:mx-0">
-                                <a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded hover:bg-blue-600 md:mx-2 md:w-auto" href="#">Login</a>
-                                <a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 rounded hover:bg-blue-600 md:mx-0 md:w-auto" href="#">Join free</a>
+                            <div className="flex items-center py-2 -mx-1 lg:mx-0">
+                                <a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded hover:bg-blue-600 lg:mx-2 lg:w-auto" href="#">Login</a>
+                                <a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 rounded hover:bg-blue-600 lg:mx-0 lg:w-auto" href="#">Join free</a>
                             </div>
 
                            
                         </div>
-                        <div className="mt-3 md:hidden">
+                        <div className="mt-3 lg:hidden">
                                 <div className="relative">
                                     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                         <svg className="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
