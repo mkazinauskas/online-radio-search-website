@@ -28,15 +28,54 @@ export class RadioStationsSearch {
         }
       });
       console.log(resp.data)
-      return {
-        data: resp.data,
-        success: true
-      };
+      return new Response(
+        true,
+        this._title,
+        resp.data
+      )
     } catch (err) {
       console.error(err);
-      return {
-        success: false
-      };
+      return new Response(
+        false,
+        this._title,
+        undefined
+      )
     }
+  }
+}
+
+export class Response {
+  query: string;
+  success: boolean;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  number: number;
+  data: [Data]
+
+  constructor(success: boolean, query: string, data: any,) {
+    this.success = success;
+    this.query = query;
+    if (success) {
+      this.size = data.page.size;
+      this.totalElements = data.page.totalElements;
+      this.totalPages = data.page.totalPages;
+      this.number = data.page.number;
+      this.data = data._embedded.searchRadioStationResultResponseList.map((item: any) => new Data(item));
+    }
+
+  }
+
+}
+
+export class Data {
+  id: number;
+  title: string;
+  website: string;
+
+  constructor(item: any) {
+    this.id = item.id;
+    this.title = item.title;
+    this.website = item.website;
   }
 }
