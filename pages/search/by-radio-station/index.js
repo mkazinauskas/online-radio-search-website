@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import getConfig from 'next/config'
 import "tailwindcss/tailwind.css";
-import NavBar from '../../../components/navbar';
+import NavBar from '../../../src/components/navbar';
 import React, { Component } from 'react';
-import axios from 'axios';
-import Footer from '../../../components/footer';
-import RadioStationsResults from '../../../components/search/radio-stations-results';
+import Footer from '../../../src/components/footer';
+import RadioStationsResults from '../../../src/components/search/radio-stations-results';
+import { RadioStationsSearch } from '../../../src/api/search/radio-stations-search';
 
 class SearchByRadioStation extends Component {
 
@@ -33,31 +33,16 @@ class SearchByRadioStation extends Component {
 
 }
 
-SearchByRadioStation.searchResults = async (apiUrl) => {
-  try {
-    const resp = await axios.get(`${apiUrl}/search/radio-station`, {
-      params: {
-        title: 'test',
-        page: 0,
-        size: 10
-      }
-    });
-    console.log(resp.data)
-    return {
-      data: resp.data,
-      success: true
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      success: false
-    };
-  }
-}
-
 SearchByRadioStation.getInitialProps = async (ctx) => {
   const { publicRuntimeConfig } = getConfig()
-  const searchResults = await SearchByRadioStation.searchResults(publicRuntimeConfig.API_URL);
+
+  const searchResults = await new RadioStationsSearch(
+    publicRuntimeConfig.API_URL,
+    'test',
+    0,
+    10
+  ).execute();
+
   return {
     contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
     searchResults

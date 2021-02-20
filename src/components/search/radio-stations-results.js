@@ -32,7 +32,7 @@ function stationResult({ id, title, website }) {
         throw Error('Title is not defined!')
     }
     return (
-        <div>
+        <div key={id}>
             <h2>{title}</h2>
             <p>{website}</p>
             <p>{id}</p>
