@@ -6,14 +6,14 @@ import React, { Component } from 'react';
 import Footer from '../../../src/components/footer';
 import RadioStationsResults from '../../../src/components/search/radio-stations-results';
 import { RadioStationsSearch } from '../../../src/api/search/radio-stations-search';
+import { withRouter } from 'next/router'
 
 class SearchByRadioStation extends Component {
 
   render() {
     const contactUsLink = this.props.contactUsLink;
-
     const results = this.props.searchResults;
-    console.log(results);
+
     return (
       <div>
         <Head>
@@ -33,14 +33,16 @@ class SearchByRadioStation extends Component {
 
 }
 
-SearchByRadioStation.getInitialProps = async (ctx) => {
+SearchByRadioStation.getInitialProps = async (router) => {
   const { publicRuntimeConfig } = getConfig()
+
+  const { title, page, size } = router.query
 
   const searchResults = await new RadioStationsSearch(
     publicRuntimeConfig.API_URL,
-    'test',
-    0,
-    10
+    title,
+    page,
+    size
   ).execute();
 
   return {
@@ -49,4 +51,4 @@ SearchByRadioStation.getInitialProps = async (ctx) => {
   }
 }
 
-export default SearchByRadioStation;
+export default withRouter(SearchByRadioStation);

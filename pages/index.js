@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import getConfig from 'next/config'
 import "tailwindcss/tailwind.css";
-import Footer from '../components/footer';
-import SectionAboutUs from '../components/main/section-about-us';
-import SectionWhyUs from '../components/main/section-why-us';
-import HeaderLeader from '../components/main/header-leader';
+import Footer from '../src/components/footer';
+import SectionAboutUs from '../src/components/main/section-about-us';
+import SectionWhyUs from '../src/components/main/section-why-us';
+import HeaderLeader from '../src/components/main/header-leader';
 
 function Home({ contactUsLink }) {
   return (
