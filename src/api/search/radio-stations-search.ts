@@ -47,23 +47,22 @@ export class RadioStationsSearch {
 export class Response {
   query: string;
   success: boolean;
-  size: number;
-  totalElements: number;
-  totalPages: number;
-  number: number;
-  data: [Data]
+  size: number | null | undefined;
+  totalElements: number | null | undefined;
+  totalPages: number | null | undefined;
+  number: number | null | undefined;
+  data: [Data] | null | undefined;
 
   constructor(success: boolean, query: string, data: any,) {
     this.success = success;
     this.query = query;
-    if (success) {
+    if (success && data) {
       this.size = data.page.size;
       this.totalElements = data.page.totalElements;
       this.totalPages = data.page.totalPages;
       this.number = data.page.number;
       this.data = data._embedded.searchRadioStationResultResponseList.map((item: any) => new Data(item));
     }
-
   }
 
 }

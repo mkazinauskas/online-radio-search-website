@@ -40,7 +40,7 @@ SearchByRadioStation.getInitialProps = async (router) => {
 
   const searchResults = await new RadioStationsSearch(
     publicRuntimeConfig.API_URL,
-    title,
+    title.replaceAll('-', ' '),
     page,
     size
   ).execute();
