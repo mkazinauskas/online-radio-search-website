@@ -71,10 +71,22 @@ export class Data {
   id: number;
   title: string;
   website: string;
+  description: string;
+  logoUrl: string;
 
   constructor(item: any) {
     this.id = item.id;
     this.title = item.title;
     this.website = item.website;
+    this.description = this._createDescription(item.title);
+    this.logoUrl = this._noLogo();
+  }
+  
+  _noLogo = () => {
+    return '/img/main/no-logo.jpg';
+  }
+
+  _createDescription = (title: String) => {
+    return `Streaming live around the world 24/7. ${title} is number one internet radio station, Bringing you the very best in uplifting Funky, Soulful & Electro House music, 4x4, 2Step, Underground and UK Garage, Dubstep, Drum & Bass & Old Skool Club Classics.`
   }
 }

@@ -12,8 +12,8 @@ function RadioStationsResults(params: { searchResults: Response }) {
     }
 
     return (
-        <section className="bg-gray-50 p-10">
-            <h1 className="text-2xl text-secondary font-bold flex-1 p-10 text-center">Radio stations by name: "{searchResults.query}"</h1>
+        <section className="bg-gray-50">
+            <h1 className="text-2xl text-secondary font-bold flex-1 px-10 md:pt-16 py-5 text-center">Radio stations with name: "{searchResults.query}"</h1>
             {radioStationResults}
             {getPagination()}
         </section>
@@ -52,17 +52,16 @@ function stationResult(item?: Data) {
         throw Error('Item is not defined!')
     }
 
-    return (
-        <div className="m-12">
-            <div className="px-10 py-6 bg-white rounded-lg shadow-md" key={item.id}>
-                <div className="mt-2"><a href="#" className="text-2xl text-gray-700 font-bold hover:underline">{item.title}</a>
-                    <p className="mt-2 text-gray-600">
-                        Streaming live around the world 24/7. {item.title} is number one internet radio station, Bringing you the very best in uplifting Funky, Soulful {'&'} Electro House music, 4x4, 2Step, Underground and UK Garage, Dubstep, Drum {'&'} Bass {'&'} Old Skool Club Classics.
-                    </p>
-                    {item.website ? (<p><a href={item.website}>{item.website}</a></p>) : ''}
-                </div>
+    return (<div key={item.id}>
+        <article className="sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-5 mx-5 md:mx-20 md:my-10">
+            <img src={item.logoUrl} alt={`Logo of ${item.title} radio station`} className="max-h-64 rounded-lg m-auto" />
+            <div className="py-5 self-center sm:pt-0 sm:px-5 col-span-4">
+                <h2 className="text-gray-800 capitalize text-xl font-bold mb-5 text-center md:text-left">{item.title}</h2>
+                {item.website ? (<a href={item.website} target="_blank" className="capitalize underline inline-block pt-2">{item.website}</a>) : ''}
+                <p className="text-center md:text-left">{item.description}</p>
             </div>
-        </div>
+        </article>
+    </div>
     );
 }
 
