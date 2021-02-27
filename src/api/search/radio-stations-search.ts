@@ -27,7 +27,6 @@ export class RadioStationsSearch {
           size: this._size
         }
       });
-      console.log(resp.data)
       return new Response(
         true,
         this._title,

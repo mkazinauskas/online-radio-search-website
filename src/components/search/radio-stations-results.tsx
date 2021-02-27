@@ -6,9 +6,9 @@ function RadioStationsResults(params: { searchResults: Response}) {
     const { searchResults } = params;
     console.log(searchResults);
 
-    if (searchResults.success = false) {
+    if (searchResults.success === false) {
         return (
-            <section className="bg-gray-50" key="no-results">
+            <section className="bg-gray-50">
                 <NoSearchResultsComponent title={searchResults.query} />
             </section>
         );
