@@ -45,7 +45,7 @@ class NavBar extends Component {
 
                         <div className={`items-center lg:flex ${this.state.showMenu ? '' : 'hidden'}`}>
                             <div className="flex flex-col mt-2 lg:flex-row lg:mt-0 lg:mx-1">
-                                <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 hover:underline lg:mx-4 lg:my-0" href="#">Home</a>
+                                <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 hover:underline lg:mx-4 lg:my-0" href="/">Home</a>
                                 <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 hover:underline lg:mx-4 lg:my-0" href="#">Blog</a>
                                 <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 hover:underline lg:mx-4 lg:my-0" href="#">Compoents</a>
                                 <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 hover:underline lg:mx-4 lg:my-0" href={contactUsLink} target="_blank">Contact</a>

@@ -4,25 +4,26 @@ import "tailwindcss/tailwind.css";
 import NavBar from '../../../src/components/navbar';
 import React, { Component } from 'react';
 import Footer from '../../../src/components/footer';
-import RadioStationsResults from '../../../src/components/search/radio-stations-results';
-import { RadioStationsSearch } from '../../../src/api/search/radio-stations-search';
+import { RadioStationInfo } from '../../../src/api/radio-station/radio-station-info';
 import { withRouter } from 'next/router'
+import RadioStationInfoPanel from '../../../src/components/radio-station/radio-station-info-panel';
 
-class SearchByRadioStation extends Component {
+class RadioStationPage extends Component {
 
   render() {
-    const { contactUsLink, searchResults } = this.props;
+
+    const { contactUsLink, radioStationResponseHolder, requestTitle } = this.props;
 
     return (
       <div>
         <Head>
-          <title>{searchResults.query} search results of Internet Radio, Free Music | OnlineRadioSearch.com</title>
+          <title>{requestTitle} search results of Internet Radio, Free Music | OnlineRadioSearch.com</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <NavBar contactUsLink={contactUsLink} />
 
-        <RadioStationsResults searchResults={searchResults} />
+        <RadioStationInfoPanel radioStationResponseHolder={radioStationResponseHolder} />
 
         <Footer contactUsLink={contactUsLink} />
 
@@ -32,22 +33,21 @@ class SearchByRadioStation extends Component {
 
 }
 
-SearchByRadioStation.getInitialProps = async (router) => {
+RadioStationPage.getInitialProps = async (router) => {
   const { publicRuntimeConfig } = getConfig()
 
-  const { title, page, size } = router.query
+  const { id, title } = router.query
 
-  const searchResults = await new RadioStationsSearch(
+  const radioStationResponseHolder = await new RadioStationInfo(
     publicRuntimeConfig.API_URL,
-    title.replaceAll('-', ' '),
-    page,
-    size
+    id
   ).execute();
 
   return {
     contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
-    searchResults,
+    radioStationResponseHolder,
+    requestTitle: title
   }
 }
 
-export default withRouter(SearchByRadioStation);
+export default withRouter(RadioStationPage);

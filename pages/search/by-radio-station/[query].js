@@ -35,11 +35,11 @@ class SearchByRadioStation extends Component {
 SearchByRadioStation.getInitialProps = async (router) => {
   const { publicRuntimeConfig } = getConfig()
 
-  const { title, page, size } = router.query
+  const { query, page, size } = router.query
 
   const searchResults = await new RadioStationsSearch(
     publicRuntimeConfig.API_URL,
-    title.replaceAll('-', ' '),
+    query.replaceAll('-', ' '),
     page,
     size
   ).execute();

@@ -18,12 +18,12 @@ class HeaderLeader extends Component {
                         <div className="container relative flex flex-wrap items-center justify-between h-24 mx-auto font-medium lg:justify-center sm:px-4 md:px-2">
                             <a href="/" className="w-1/4 py-4 pr-4 md:py-0">
                                 <span className="text-xl font-black leading-none text-white select-none logo">OnlineRadioSearch.com</span>
-                            </a>
+                            </a> 
                             <div className={`top-0 left-0 items-start w-full h-full p-4 text-sm bg-gray-900 bg-opacity-50 md:w-3/4 md:absolute lg:text-base md:h-auto md:bg-transparent md:p-0 md:relative md:flex ${this.state.showMenu ? 'flext fixed' : 'hidden'}`} >
                                 <div className="flex-col bg-gray-700 w-full h-auto overflow-hidden rounded-lg select-none md:bg-transparent md:rounded-none md:relative md:flex md:flex-row md:overflow-auto">
                                     <a href="/" className="inline-flex items-center block w-auto h-16 px-6 text-xl font-black leading-none text-white select-none md:hidden">OnlineRadioSearch.com</a>
                                     <div className="flex flex-col items-start justify-center w-full text-center md:w-2/3 md:mt-0 md:flex-row md:items-center">
-                                        <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">Home</a>
+                                        <a href="/" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">Home</a>
                                         <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center">Features</a>
                                         <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center">Blog</a>
                                         <a href={this.props.contactUsLink} target="_blank" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center">Contact</a>
