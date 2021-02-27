@@ -20,8 +20,6 @@ function RadioStationInfoPanel(params: { radioStationResponseHolder: ApiResponse
 
     const radioStation = radioStationResponseHolder.response;
 
-    // const radioStationResults = searchResults.data!.map(item => stationResult(item))
-
     return (
         <section className="bg-gray-50">
             <div className="container mx-auto py-5">
