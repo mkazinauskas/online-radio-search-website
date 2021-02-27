@@ -1,48 +1,70 @@
 import NoSearchResultsComponent from "./no-search-results-component";
 import { Response, Data } from '../../api/search/radio-stations-search';
 
-function RadioStationsResults(params: { searchResults: Response }) {
+function RadioStationsResults(params: { searchResults: Response}) {
     const { searchResults } = params;
     console.log(searchResults);
 
-    let radioStationResults: any = <NoSearchResultsComponent title={searchResults.query} />;
-
-    if (searchResults.success) {
-        radioStationResults = searchResults.data!.map(item => stationResult(item))
+    if (searchResults.success = false) {
+        return (
+            <section className="bg-gray-50" key="no-results">
+                <NoSearchResultsComponent title={searchResults.query} />
+            </section>
+        );
     }
+
+    const radioStationResults = searchResults.data!.map(item => stationResult(item))
 
     return (
         <section className="bg-gray-50">
             <h1 className="text-2xl text-secondary font-bold flex-1 px-10 md:pt-16 py-5 text-center">Radio stations with name: "{searchResults.query}"</h1>
             {radioStationResults}
-            {getPagination()}
+            {getPagination(searchResults.query, searchResults.number, searchResults.totalPages)}
         </section>
     )
 
 }
 
-function getPagination() {
-    return (
-        <div className="flex m-12">
-            <a href="#" className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
-                previous
-                        </a>
+function getPagination(searchTitle: string, number: number, totalPages: number) {
+    console.log(number);
+    console.log(totalPages);
+    const safeSearchTitle = searchTitle.replaceAll(' ', '-').toLocaleLowerCase();
 
-            <a href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
-                1
-                        </a>
+    const baseLink = `/search/by-radio-station/${safeSearchTitle}/`;
 
-            <a href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
-                2
-                        </a>
+    let buttons = [];
 
-            <a href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
-                3
-                        </a>
+    if (number <= 0) {
+        buttons.push((
+            <a key="prev-disabled" className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
+                Previous
+            </a>
+        ));
+    } else {
+        buttons.push((
+            <a key="prev" href={baseLink + '?number=' + (number - 1)} className="mx-1 px-3 py-2 bg-white text-gray-700 hover:bg-blue-500 hover:text-white font-medium rounded-md">
+                Previous
+            </a>
+        ));
+    }
 
-            <a href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
+    if (number >= totalPages) {
+        buttons.push((
+            <a key="next-disabled" className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
                 Next
-                        </a>
+            </a>
+        ));
+    } else {
+        buttons.push((
+            <a key="next" href={baseLink + '?number=' + (number + 1)} className="mx-1 px-3 py-2 bg-white text-gray-700 hover:bg-blue-500 hover:text-white font-medium rounded-md">
+                Next
+            </a>
+        ));
+    }
+
+    return (
+        <div className="pb-12 pt-6 mx-auto text-center">
+            {buttons}
         </div>
     )
 }
@@ -64,7 +86,6 @@ function stationResult(item?: Data) {
     </div>
     );
 }
-
 
 
 export default RadioStationsResults;

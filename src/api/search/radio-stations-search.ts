@@ -47,10 +47,10 @@ export class RadioStationsSearch {
 export class Response {
   query: string;
   success: boolean;
-  size: number | null | undefined;
-  totalElements: number | null | undefined;
-  totalPages: number | null | undefined;
-  number: number | null | undefined;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  number: number;
   data: [Data] | null | undefined;
 
   constructor(success: boolean, query: string, data: any,) {
@@ -62,6 +62,11 @@ export class Response {
       this.totalPages = data.page.totalPages;
       this.number = data.page.number;
       this.data = data._embedded.searchRadioStationResultResponseList.map((item: any) => new Data(item));
+    } else {
+      this.size = 0;
+      this.totalElements = 0;
+      this.totalPages = 0;
+      this.number = 0;
     }
   }
 
@@ -81,7 +86,7 @@ export class Data {
     this.description = this._createDescription(item.title);
     this.logoUrl = this._noLogo();
   }
-  
+
   _noLogo = () => {
     return '/img/main/no-logo.jpg';
   }

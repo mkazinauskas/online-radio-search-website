@@ -11,19 +11,18 @@ import { withRouter } from 'next/router'
 class SearchByRadioStation extends Component {
 
   render() {
-    const contactUsLink = this.props.contactUsLink;
-    const results = this.props.searchResults;
+    const { contactUsLink, searchResults } = this.props;
 
     return (
       <div>
         <Head>
-          <title>Online Radio Stations, Internet Radio, Free Music | OnlineRadioSearch.com</title>
+          <title>{searchResults.query} search results of Internet Radio, Free Music | OnlineRadioSearch.com</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <NavBar contactUsLink={contactUsLink} />
 
-        <RadioStationsResults searchResults={results} />
+        <RadioStationsResults searchResults={searchResults} />
 
         <Footer contactUsLink={contactUsLink} />
 
@@ -47,7 +46,7 @@ SearchByRadioStation.getInitialProps = async (router) => {
 
   return {
     contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
-    searchResults
+    searchResults,
   }
 }
 
