@@ -24,15 +24,17 @@ function RadioStationInfoPanel(params: { radioStationResponseHolder: ApiResponse
 
     return (
         <section className="bg-gray-50">
-            <div className="container mx-auto py-10">
-                <div
-                    className="block mx-2 md:mx-auto sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-2 md:mb-10">
+            <div className="container mx-auto py-5">
+                <div className="block mx-2 md:mx-auto sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-2 md:mb-10">
                     <img src={radioStation?.logoUrl} alt={`Logo of ${radioStation?.title} radio station`} className="max-h-64 rounded-lg m-auto" />
                     <div className="py-5 self-center sm:pt-0 sm:px-5 col-span-4">
                         <h2 className="text-gray-800 capitalize text-xl font-bold mb-5 text-center md:text-left">{radioStation?.title}</h2>
                         {radioStation?.website ? (<a href={radioStation?.website} target="_blank" className="capitalize underline inline-block pt-2">{radioStation?.website}</a>) : ''}
                         <p className="text-center md:text-left">{radioStation?.description}</p>
                     </div>
+
+                    {_streams()}
+
                 </div>
             </div>
         </section>
@@ -40,25 +42,37 @@ function RadioStationInfoPanel(params: { radioStationResponseHolder: ApiResponse
 
 }
 
-function stationResult(item?: Data) {
-    if (item === undefined) {
-        throw Error('Item is not defined!')
-    }
-
+function _streams() {
     return (
-        <div key={item.id}>
-            <a href={`/radio-stations/${toSeoText(item.title)}/${item.id}`}
-                className="block mx-2 md:mx-auto sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-2 md:mb-10">
-                <img src={item.logoUrl} alt={`Logo of ${item.title} radio station`} className="max-h-64 rounded-lg m-auto" />
-                <div className="py-5 self-center sm:pt-0 sm:px-5 col-span-4">
-                    <h2 className="text-gray-800 capitalize text-xl font-bold mb-5 text-center md:text-left">{item.title}</h2>
-                    {item.website ? (<a href={item.website} target="_blank" className="capitalize underline inline-block pt-2">{item.website}</a>) : ''}
-                    <p className="text-center md:text-left">{item.description}</p>
-                </div>
-            </a>
-        </div>
-    );
+        <ul className="text-xs sm:text-base divide-y cursor-default col-span-5 px-5">
+            <li className="flex items-center space-x-3 hover:bg-gray-100">
+                <button className="p-3 hover:bg-green-500 group focus:outline-none">
+                    <svg className="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+                <div className="flex-1">Title</div>
+                <div className="flex-1">Url</div>
+                <div className="flex-1">Bit rate</div>
+                <div className="text-xs text-gray-400">2:58</div>
+                <button className="focus:outline-none pr-4 group">
+                    <svg className="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5" /></svg>
+                </button>
+            </li>
+            <li className="flex items-center space-x-3 hover:bg-gray-100">
+                <button className="p-3 hover:bg-green-500 group focus:outline-none">
+                    <svg className="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+                <div className="flex-1">
+                    Artist - Title
+</div>
+                <div className="text-xs text-gray-400">
+                    2:58
+</div>
+                <button className="focus:outline-none pr-4 group">
+                    <svg className="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5" /></svg>
+                </button>
+            </li>
+        </ul>
+    )
 }
-
 
 export default RadioStationInfoPanel;
