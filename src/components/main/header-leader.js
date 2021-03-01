@@ -18,7 +18,7 @@ class HeaderLeader extends Component {
                         <div className="container relative flex flex-wrap items-center justify-between h-24 mx-auto font-medium lg:justify-center sm:px-4 md:px-2">
                             <a href="/" className="w-1/4 py-4 pr-4 md:py-0">
                                 <span className="text-xl font-black leading-none text-white select-none logo">OnlineRadioSearch.com</span>
-                            </a> 
+                            </a>
                             <div className={`top-0 left-0 items-start w-full h-full p-4 text-sm bg-gray-900 bg-opacity-50 md:w-3/4 md:absolute lg:text-base md:h-auto md:bg-transparent md:p-0 md:relative md:flex ${this.state.showMenu ? 'flext fixed' : 'hidden'}`} >
                                 <div className="flex-col bg-gray-700 w-full h-auto overflow-hidden rounded-lg select-none md:bg-transparent md:rounded-none md:relative md:flex md:flex-row md:overflow-auto">
                                     <a href="/" className="inline-flex items-center block w-auto h-16 px-6 text-xl font-black leading-none text-white select-none md:hidden">OnlineRadioSearch.com</a>
@@ -36,11 +36,11 @@ class HeaderLeader extends Component {
                                 </div>
                             </div>
 
-                            <div onClick={()=>this.setState({ ...this.state, showMenu: !this.state.showMenu })} className="absolute right-0 flex flex-col items-center items-end justify-center w-10 h-10 rounded-full cursor-pointer md:hidden hover:bg-gray-100">
-                                <svg className={`w-6 h-6 text-gray-300 ${this.state.showMenu?'hidden':''}`} fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <div onClick={() => this.setState({ ...this.state, showMenu: !this.state.showMenu })} className="absolute right-0 flex flex-col items-center items-end justify-center w-10 h-10 rounded-full cursor-pointer md:hidden hover:bg-gray-100">
+                                <svg className={`w-6 h-6 text-gray-300 ${this.state.showMenu ? 'hidden' : ''}`} fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M4 6h16M4 12h16M4 18h16"></path>
                                 </svg>
-                                <svg className={`w-6 h-6 text-gray-300 ${!this.state.showMenu?'hidden':''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg className={`w-6 h-6 text-gray-300 ${!this.state.showMenu ? 'hidden' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </div>
