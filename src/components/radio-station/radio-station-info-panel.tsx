@@ -53,9 +53,6 @@ function RadioStationInfoPanel(params: {
 }
 
 function _streams(streams: RadioStationStream[]) {
-
-    console.log(streams);
-
     const streamsTable = streams.map(stream => (
         <li className="flex items-center space-x-3 hover:bg-gray-100" key={stream.id}>
             <button className="p-3 hover:bg-green-500 group focus:outline-none">

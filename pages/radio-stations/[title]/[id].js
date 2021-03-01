@@ -42,16 +42,20 @@ RadioStationPage.getInitialProps = async (router) => {
 
   const { id, title } = router.query
 
-  const radioStationResponseHolder = await new RadioStationInfo(
+  const radioStationApi = new RadioStationInfo(
     publicRuntimeConfig.API_URL,
     id
-  ).execute();
+  );
 
-
-  const radioStationStreamsResponseHolder = await new RadioStationStreams(
+  const radioStationStreamsApi = new RadioStationStreams(
     publicRuntimeConfig.API_URL,
     id
-  ).execute();
+  );
+
+  const [radioStationResponseHolder, radioStationStreamsResponseHolder] = await Promise.all([
+    radioStationApi.execute(),
+    radioStationStreamsApi.execute()
+  ]);
 
   return {
     contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
