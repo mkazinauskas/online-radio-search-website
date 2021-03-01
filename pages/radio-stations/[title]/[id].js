@@ -7,12 +7,13 @@ import Footer from '../../../src/components/footer';
 import { RadioStationInfo } from '../../../src/api/radio-station/radio-station-info';
 import { withRouter } from 'next/router'
 import RadioStationInfoPanel from '../../../src/components/radio-station/radio-station-info-panel';
+import { RadioStationStreams } from '../../../src/api/radio-station/radio-station-streams';
 
 class RadioStationPage extends Component {
 
   render() {
 
-    const { contactUsLink, radioStationResponseHolder, requestTitle } = this.props;
+    const { contactUsLink, radioStationResponseHolder, radioStationStreamsResponseHolder, requestTitle } = this.props;
 
     return (
       <div>
@@ -23,7 +24,10 @@ class RadioStationPage extends Component {
 
         <NavBar contactUsLink={contactUsLink} />
 
-        <RadioStationInfoPanel radioStationResponseHolder={radioStationResponseHolder} />
+        <RadioStationInfoPanel
+          radioStationResponseHolder={radioStationResponseHolder}
+          radioStationStreamsResponseHolder={radioStationStreamsResponseHolder}
+        />
 
         <Footer contactUsLink={contactUsLink} />
 
@@ -43,9 +47,16 @@ RadioStationPage.getInitialProps = async (router) => {
     id
   ).execute();
 
+
+  const radioStationStreamsResponseHolder = await new RadioStationStreams(
+    publicRuntimeConfig.API_URL,
+    id
+  ).execute();
+
   return {
     contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
     radioStationResponseHolder,
+    radioStationStreamsResponseHolder,
     requestTitle: title
   }
 }

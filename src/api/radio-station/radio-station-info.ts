@@ -14,21 +14,21 @@ export class RadioStationInfo {
     this._id = id;
   }
 
-  execute = async (): Promise<ApiResponseHolder<Response>> => {
+  execute = async (): Promise<ApiResponseHolder<RadioStationResponse>> => {
     try {
       const resp = await axios.get(`${this._apiUrl}/radio-stations/${this._id}`);
-      return new ApiResponseHolder<Response>(undefined, new Response(
+      return new ApiResponseHolder<RadioStationResponse>(undefined, new RadioStationResponse(
         resp.data
       )
       )
     } catch (err) {
       console.error(err);
-      return new ApiResponseHolder<Response>(new ApiErrorResponse(err), undefined);
+      return new ApiResponseHolder<RadioStationResponse>(new ApiErrorResponse(err), undefined);
     }
   }
 }
 
-export class Response {
+export class RadioStationResponse {
   id: number;
   uniqueId: string;
   title: string;
