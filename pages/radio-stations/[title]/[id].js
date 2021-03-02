@@ -8,12 +8,13 @@ import { RadioStationInfo } from '../../../src/api/radio-station/radio-station-i
 import { withRouter } from 'next/router'
 import RadioStationInfoPanel from '../../../src/components/radio-station/radio-station-info-panel';
 import { RadioStationStreams } from '../../../src/api/radio-station/radio-station-streams';
+import { RadioStationSongs } from '../../../src/api/radio-station/radio-station-songs';
 
 class RadioStationPage extends Component {
 
   render() {
 
-    const { contactUsLink, radioStationResponseHolder, radioStationStreamsResponseHolder, requestTitle } = this.props;
+    const { contactUsLink, radioStationResponseHolder, radioStationStreamsResponseHolder, radioStationSongsResponseHolder, requestTitle } = this.props;
 
     return (
       <div>
@@ -27,6 +28,7 @@ class RadioStationPage extends Component {
         <RadioStationInfoPanel
           radioStationResponseHolder={radioStationResponseHolder}
           radioStationStreamsResponseHolder={radioStationStreamsResponseHolder}
+          radioStationSongsResponseHolder={radioStationSongsResponseHolder}
         />
 
         <Footer contactUsLink={contactUsLink} />
@@ -52,15 +54,26 @@ RadioStationPage.getInitialProps = async (router) => {
     id
   );
 
-  const [radioStationResponseHolder, radioStationStreamsResponseHolder] = await Promise.all([
+  const radioStationSongsApi = new RadioStationSongs(
+    publicRuntimeConfig.API_URL,
+    id
+  )
+
+  const [
+    radioStationResponseHolder,
+    radioStationStreamsResponseHolder,
+    radioStationSongsResponseHolder
+  ] = await Promise.all([
     radioStationApi.execute(),
-    radioStationStreamsApi.execute()
+    radioStationStreamsApi.execute(),
+    radioStationSongsApi.execute()
   ]);
 
   return {
     contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
     radioStationResponseHolder,
     radioStationStreamsResponseHolder,
+    radioStationSongsResponseHolder,
     requestTitle: title
   }
 }
