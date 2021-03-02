@@ -9,12 +9,20 @@ import { withRouter } from 'next/router'
 import RadioStationInfoPanel from '../../../src/components/radio-station/radio-station-info-panel';
 import { RadioStationStreams } from '../../../src/api/radio-station/radio-station-streams';
 import { RadioStationSongs } from '../../../src/api/radio-station/radio-station-songs';
+import { LastSearches } from '../../../src/api/last-searches/last-searhes';
 
 class RadioStationPage extends Component {
 
   render() {
 
-    const { contactUsLink, radioStationResponseHolder, radioStationStreamsResponseHolder, radioStationSongsResponseHolder, requestTitle } = this.props;
+    const {
+      contactUsLink,
+      radioStationResponseHolder,
+      radioStationStreamsResponseHolder,
+      radioStationSongsResponseHolder,
+      lastSearhesResponseHolder,
+      requestTitle
+    } = this.props;
 
     return (
       <div>
@@ -31,7 +39,10 @@ class RadioStationPage extends Component {
           radioStationSongsResponseHolder={radioStationSongsResponseHolder}
         />
 
-        <Footer contactUsLink={contactUsLink} />
+        <Footer
+          contactUsLink={contactUsLink}
+          lastSearhesResponseHolder={lastSearhesResponseHolder}
+        />
 
       </div>
     )
@@ -59,14 +70,22 @@ RadioStationPage.getInitialProps = async (router) => {
     id
   )
 
+  const lastSearhesApi = new LastSearches(
+    publicRuntimeConfig.API_URL,
+    //todo
+    50
+  )
+
   const [
     radioStationResponseHolder,
     radioStationStreamsResponseHolder,
-    radioStationSongsResponseHolder
+    radioStationSongsResponseHolder,
+    lastSearhesResponseHolder
   ] = await Promise.all([
     radioStationApi.execute(),
     radioStationStreamsApi.execute(),
-    radioStationSongsApi.execute()
+    radioStationSongsApi.execute(),
+    lastSearhesApi.execute()
   ]);
 
   return {
@@ -74,6 +93,7 @@ RadioStationPage.getInitialProps = async (router) => {
     radioStationResponseHolder,
     radioStationStreamsResponseHolder,
     radioStationSongsResponseHolder,
+    lastSearhesResponseHolder,
     requestTitle: title
   }
 }
