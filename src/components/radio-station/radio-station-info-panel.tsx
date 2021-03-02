@@ -46,7 +46,7 @@ function RadioStationInfoPanel(params: {
                     <img src={radioStation?.logoUrl} alt={`Logo of ${radioStation?.title} radio station`} className="max-h-64 rounded-lg m-auto" />
                     <div className="py-5 self-center sm:pt-0 sm:px-5 col-span-4 text-center md:text-left">
                         <h1 className="text-gray-800 capitalize text-xl font-bold mb-5 ">{radioStation?.title}</h1>
-                        {radioStation?.website ? (<a href={radioStation?.website} target="_blank" className="capitalize underline inline-block pb-2">{radioStation?.website}</a>) : ''}
+                        {radioStation?.website ? (<a href={websiteUrlFix(radioStation?.website)} target="_blank" className="underline inline-block pb-2 hover:text-green-600">{radioStation?.website}</a>) : ''}
                         <p>{radioStation?.description}</p>
                     </div>
 
@@ -59,6 +59,13 @@ function RadioStationInfoPanel(params: {
         </section>
     )
 
+}
+
+function websiteUrlFix(url: string) {
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url;
+    }
+    return 'http://' + url;
 }
 
 function _streams(streams: RadioStationStream[]) {
