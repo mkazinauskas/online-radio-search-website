@@ -17,7 +17,7 @@ const configFromType: TypeToConfigMapType = {
     'genre': { textTitle: 'genre', linkPrefix: '/search/by-genre/'}
 }
 
-function LastSearchesComponent(params: { lastSearhesResponseHolder: ApiResponseHolder<LastSearchesResponse> }) {
+function LastSearchesComponent(params: { lastSearhesResponseHolder: ApiResponseHolder<LastSearchesResponse> }): JSX.Element {
     const { lastSearhesResponseHolder } = params;
 
     if (lastSearhesResponseHolder === undefined) {
@@ -25,7 +25,7 @@ function LastSearchesComponent(params: { lastSearhesResponseHolder: ApiResponseH
     }
 
     if (lastSearhesResponseHolder.error) {
-        return '';
+        return (<></>);
     }
 
     const { searches } = lastSearhesResponseHolder.response;

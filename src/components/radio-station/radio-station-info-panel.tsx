@@ -87,7 +87,7 @@ function _streams(streams: RadioStationStream[]) {
     );
 
     return (
-        <div className="col-span-5 px-5">
+        <div className="col-span-5 px-5 py-5">
             <h2 className="text-gray-800 capitalize text-xl font-bold mb-5 text-center">Available streams</h2>
             <li className="items-center space-x-3 hidden md:flex" key="info">
                 <div className="p-3 group focus:outline-none">
@@ -109,6 +109,10 @@ function _streams(streams: RadioStationStream[]) {
 
 
 function _songs(songs: RadioStationSong[]) {
+    console.log(songs);
+    if(!songs.length){
+        return null;
+    }
     const songsTable = songs.map(song => (
         <li className="flex items-center space-x-3 py-2 pl-3 hover:bg-gray-100" key={song.id}>
             <div className="flex-1 break-all">{song.title}</div>

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import ApiErrorResponse from '../api-error-response';
+import ApiResponseHolder from '../api-response-holder';
 
 export class RadioStationsSearch {
   _apiUrl: string;
@@ -27,51 +29,39 @@ export class RadioStationsSearch {
           size: this._size
         }
       });
-      return new Response(
-        true,
-        this._title,
-        resp.data
+      return new ApiResponseHolder<RadioStationsSearchResponse>(
+        undefined, new RadioStationsSearchResponse(
+          this._title,
+          resp.data
+        )
       )
     } catch (err) {
       console.error(err);
-      return new Response(
-        false,
-        this._title,
-        undefined
-      )
+      return new ApiResponseHolder<RadioStationsSearchResponse>(new ApiErrorResponse(err), undefined);
     }
   }
 }
 
-export class Response {
+export class RadioStationsSearchResponse {
   query: string;
-  success: boolean;
   size: number;
   totalElements: number;
   totalPages: number;
   number: number;
-  data: [Data] | null | undefined;
+  data: [SingleRadioStationResult];
 
-  constructor(success: boolean, query: string, data: any,) {
-    this.success = success;
+  constructor(query: string, data: any,) {
     this.query = query;
-    if (success && data) {
-      this.size = data.page.size;
-      this.totalElements = data.page.totalElements;
-      this.totalPages = data.page.totalPages;
-      this.number = data.page.number;
-      this.data = data._embedded.searchRadioStationResultResponseList.map((item: any) => new Data(item));
-    } else {
-      this.size = 0;
-      this.totalElements = 0;
-      this.totalPages = 0;
-      this.number = 0;
-    }
+    this.size = data.page.size;
+    this.totalElements = data.page.totalElements;
+    this.totalPages = data.page.totalPages;
+    this.number = data.page.number;
+    this.data = data._embedded.searchRadioStationResultResponseList.map((item: any) => new SingleRadioStationResult(item));
   }
 
 }
 
-export class Data {
+export class SingleRadioStationResult {
   id: number;
   title: string;
   website: string;

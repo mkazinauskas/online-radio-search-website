@@ -51,6 +51,10 @@ export class RadioStationSongsResponse {
   songs: RadioStationSong[];
 
   constructor(data: any) {
+    if (!data._embedded) {
+      this.songs = [];
+      return;
+    }
     this.songs = data._embedded.radioStationSongResponseList.map((songData: any) => new RadioStationSong(songData));
   }
 

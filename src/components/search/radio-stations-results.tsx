@@ -1,21 +1,28 @@
 import NoSearchResultsComponent from "./no-search-results-component";
-import { Response, Data } from '../../api/search/radio-stations-search';
+import { RadioStationsSearch, RadioStationsSearchResponse, SingleRadioStationResult } from '../../api/search/radio-stations-search';
 import PaginationComponent from "./pagination-component";
 import SearchTypeTabsComponent, { ActiveTabType } from "./search-type-tabs-component";
 import { toSeoText } from "../../utils/seo-tools";
+import ApiResponseHolder from "../../api/api-response-holder";
 
-function RadioStationsResults(params: { searchResults: Response }) {
-    const { searchResults } = params;
+function RadioStationsResults(params: { radioStationsSearchResponseHolder: ApiResponseHolder<RadioStationsSearchResponse> }) {
+    const { radioStationsSearchResponseHolder } = params;
 
-    if (searchResults.success === false) {
+    if (radioStationsSearchResponseHolder.error) {
         return (
             <section className="bg-gray-50">
-                <NoSearchResultsComponent title={searchResults.query} />
+                <NoSearchResultsComponent />
             </section>
         );
     }
 
-    const radioStationResults = searchResults.data!.map(item => stationResult(item))
+    const searchResults = radioStationsSearchResponseHolder.response;
+
+    if (!searchResults) {
+        throw new Error('No Radio Station search results');
+    }
+
+    const radioStationResults = searchResults?.data!.map(item => stationResult(item));
 
     return (
         <section className="bg-gray-50">
@@ -30,7 +37,7 @@ function RadioStationsResults(params: { searchResults: Response }) {
 
 }
 
-function stationResult(item?: Data) {
+function stationResult(item?: SingleRadioStationResult) {
     if (item === undefined) {
         throw Error('Item is not defined!')
     }

@@ -7,24 +7,25 @@ import Footer from '../../../src/components/footer';
 import RadioStationsResults from '../../../src/components/search/radio-stations-results';
 import { RadioStationsSearch } from '../../../src/api/search/radio-stations-search';
 import { withRouter } from 'next/router'
+import { LastSearches } from '../../../src/api/last-searches/last-searhes';
 
 class SearchByRadioStation extends Component {
 
   render() {
-    const { contactUsLink, searchResults } = this.props;
+    const { contactUsLink, radioStationsSearchResponseHolder, lastSearhesResponseHolder, query} = this.props;
 
     return (
       <div>
         <Head>
-          <title>{searchResults.query} search results of Internet Radio, Free Music | OnlineRadioSearch.com</title>
+          <title>{query} Internet Radio Search Results, Listen to Free Music | OnlineRadioSearch.com</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <NavBar contactUsLink={contactUsLink} />
 
-        <RadioStationsResults searchResults={searchResults} />
+        <RadioStationsResults radioStationsSearchResponseHolder={radioStationsSearchResponseHolder} />
 
-        <Footer contactUsLink={contactUsLink} />
+        <Footer contactUsLink={contactUsLink} lastSearhesResponseHolder={lastSearhesResponseHolder} />
 
       </div>
     )
@@ -37,16 +38,35 @@ SearchByRadioStation.getInitialProps = async (router) => {
 
   const { query, page, size } = router.query
 
-  const searchResults = await new RadioStationsSearch(
+
+  const cleanQuery =  query.replaceAll('-', ' ');
+
+  const radioStationsSearchApi = await new RadioStationsSearch(
     publicRuntimeConfig.API_URL,
-    query.replaceAll('-', ' '),
+    cleanQuery,
     page,
     size
-  ).execute();
+  );
+
+  const lastSearhesApi = new LastSearches(
+    publicRuntimeConfig.API_URL,
+    //todo
+    50
+  )
+
+  const [
+    radioStationsSearchResponseHolder,
+    lastSearhesResponseHolder
+  ] = await Promise.all([
+    radioStationsSearchApi.execute(),
+    lastSearhesApi.execute()
+  ]);
 
   return {
     contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
-    searchResults,
+    radioStationsSearchResponseHolder,
+    lastSearhesResponseHolder,
+    query: cleanQuery
   }
 }
 
