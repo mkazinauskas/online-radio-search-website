@@ -11,7 +11,7 @@ class HeaderLeader extends Component {
             throw Error('Contact us link does not exist!')
         }
         return (
-            <header className="pattern" style={{ backgroundImage: 'url("/img/main/main-background.jpg")' }}>
+            <header className="pattern" style={{ backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url("/img/main/main-background.jpg")', backgroundPosition: 'center', backgroundSize: 'cover' }}>
                 <div className="container px-6 md:pb-10 mx-auto">
 
                     <nav className="relative z-50 h-24">

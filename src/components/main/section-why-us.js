@@ -1,7 +1,7 @@
 function SectionWhyUs() {
     return (
         <section className="bg-white dark:bg-gray-800">
-            <div className="container lg:max-w-6xl px-6 py-8 lg:py-12 sm:py-4 mx-auto">
+            <div className="container px-6 py-8 lg:py-12 sm:py-4 mx-auto">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     <div>
                         <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

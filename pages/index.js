@@ -5,8 +5,9 @@ import Footer from '../src/components/footer';
 import SectionAboutUs from '../src/components/main/section-about-us';
 import SectionWhyUs from '../src/components/main/section-why-us';
 import HeaderLeader from '../src/components/main/header-leader';
+import { LastSearches } from '../src/api/last-searches/last-searhes';
 
-function Home({ contactUsLink }) {
+function Home({ contactUsLink, lastSearhesResponseHolder }) {
   return (
     <div>
       <Head>
@@ -17,11 +18,11 @@ function Home({ contactUsLink }) {
 
       <HeaderLeader contactUsLink={contactUsLink} />
 
-      <SectionAboutUs />
-
       <SectionWhyUs />
 
-      <Footer contactUsLink={contactUsLink} />
+      <SectionAboutUs />
+
+      <Footer contactUsLink={contactUsLink} lastSearhesResponseHolder={lastSearhesResponseHolder} />
 
     </div>
   )
@@ -29,7 +30,23 @@ function Home({ contactUsLink }) {
 
 Home.getInitialProps = async (ctx) => {
   const { publicRuntimeConfig } = getConfig()
-  return { contactUsLink: publicRuntimeConfig.CONTACT_US_LINK }
+
+  const lastSearhesApi = new LastSearches(
+    publicRuntimeConfig.API_URL,
+    //todo
+    50
+  )
+
+  const [
+    lastSearhesResponseHolder
+  ] = await Promise.all([
+    lastSearhesApi.execute()
+  ]);
+
+  return {
+    contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
+    lastSearhesResponseHolder
+  }
 }
 
 export default Home;
