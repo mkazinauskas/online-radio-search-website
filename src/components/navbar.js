@@ -6,7 +6,6 @@ class NavBar extends Component {
         showMenu: false
     }
 
-
     render() {
         const { websiteConfig } = this.props;
 
