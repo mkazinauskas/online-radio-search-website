@@ -1,16 +1,22 @@
 import ApiResponseHolder from "../api/api-response-holder";
-import { LastSearches, LastSearchesResponse } from "../api/last-searches/last-searhes";
+import { LastSearchesResponse } from "../api/last-searches/last-searhes";
 import LastSearchesComponent from "./last-searches-component";
+import { URL_PATH } from "../../pages/policies/privacy";
+import { WebsiteConfig } from "../utils/website-config";
 
 
-function Footer(params: { contactUsLink: string, lastSearhesResponseHolder: ApiResponseHolder<LastSearchesResponse> }) {
-    const { contactUsLink, lastSearhesResponseHolder } = params;
-    if (contactUsLink === undefined) {
-        throw Error('Contact us link does not exist!')
+function Footer(params: { websiteConfig: WebsiteConfig, lastSearhesResponseHolder: ApiResponseHolder<LastSearchesResponse> }) {
+    const { websiteConfig, lastSearhesResponseHolder } = params;
+
+    if (!websiteConfig) {
+        throw Error('Website config does not exist');
     }
-    if (lastSearhesResponseHolder === undefined) {
+
+    if (!lastSearhesResponseHolder) {
         throw Error('Last searches do not exist!')
     }
+
+    const { contactUsLink, websiteName } = websiteConfig;
 
     return (
         <footer className="bg-white">
@@ -43,13 +49,13 @@ function Footer(params: { contactUsLink: string, lastSearhesResponseHolder: ApiR
                 </a>
                     </div>
                     <div className="px-5 py-2">
-                        <a href="#" className="text-base leading-6 text-gray-500 hover:text-gray-900">
-                            Terms
+                        <a href={URL_PATH} className="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Privacy Policy
                 </a>
                     </div>
                 </nav>
                 <div className="flex justify-center mt-8 space-x-6">
-                    <a href="#" className="text-gray-400 hover:text-gray-500">
+                    <a href={contactUsLink} className="text-gray-400 hover:text-gray-500">
                         <span className="sr-only">Facebook</span>
                         <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
                             <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
@@ -81,7 +87,7 @@ function Footer(params: { contactUsLink: string, lastSearhesResponseHolder: ApiR
                     </a>
                 </div>
                 <p className="mt-8 text-base leading-6 text-center text-gray-400">
-                    &copy; {new Date().getUTCFullYear()} OnlineRadioSearch.com. All rights reserved.
+                    &copy; {new Date().getUTCFullYear()} {websiteName}. All rights reserved.
         </p>
             </div>
         </footer>

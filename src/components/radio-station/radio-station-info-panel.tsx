@@ -107,10 +107,8 @@ function _streams(streams: RadioStationStream[]) {
     )
 }
 
-
 function _songs(songs: RadioStationSong[]) {
-    console.log(songs);
-    if(!songs.length){
+    if (!songs.length) {
         return null;
     }
     const songsTable = songs.map(song => (

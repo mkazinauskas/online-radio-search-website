@@ -6,8 +6,9 @@ import SectionAboutUs from '../src/components/main/section-about-us';
 import SectionWhyUs from '../src/components/main/section-why-us';
 import HeaderLeader from '../src/components/main/header-leader';
 import { LastSearches } from '../src/api/last-searches/last-searhes';
+import extract from '../src/utils/website-config';
 
-function Home({ contactUsLink, lastSearhesResponseHolder }) {
+function Home({ websiteConfig, lastSearhesResponseHolder }) {
   return (
     <div>
       <Head>
@@ -16,13 +17,13 @@ function Home({ contactUsLink, lastSearhesResponseHolder }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <HeaderLeader contactUsLink={contactUsLink} />
+      <HeaderLeader websiteConfig={websiteConfig} />
 
       <SectionWhyUs />
 
       <SectionAboutUs />
 
-      <Footer contactUsLink={contactUsLink} lastSearhesResponseHolder={lastSearhesResponseHolder} />
+      <Footer websiteConfig={websiteConfig} lastSearhesResponseHolder={lastSearhesResponseHolder} />
 
     </div>
   )
@@ -44,7 +45,7 @@ Home.getInitialProps = async (ctx) => {
   ]);
 
   return {
-    contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
+    ...extract(publicRuntimeConfig),
     lastSearhesResponseHolder
   }
 }

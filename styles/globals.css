@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    .document h1 {
+        @apply text-2xl font-bold mt-3 mb-5 text-gray-800 text-center;
+    }
+    .document h2 {
+        @apply text-xl font-bold mt-3 mb-5 text-gray-800 text-center;
+    }
+    .document p {
+        @apply text-gray-600 my-2;
+    }
+    .document ul {
+        @apply text-gray-600;
+    }
+    .document li {
+        @apply text-gray-600 my-2 list-disc list-inside ml-10;
+    }
+    .document a {
+        @apply text-gray-700 hover:underline hover:text-gray-800;
+    }
+    h1, h2, p, a {
+        @apply break-words
+    }
+}
+
+.document p {
+    text-indent: 2em;
+}

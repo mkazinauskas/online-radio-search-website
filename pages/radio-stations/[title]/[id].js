@@ -10,13 +10,14 @@ import RadioStationInfoPanel from '../../../src/components/radio-station/radio-s
 import { RadioStationStreams } from '../../../src/api/radio-station/radio-station-streams';
 import { RadioStationSongs } from '../../../src/api/radio-station/radio-station-songs';
 import { LastSearches } from '../../../src/api/last-searches/last-searhes';
+import extract from '../../../src/utils/website-config';
 
 class RadioStationPage extends Component {
 
   render() {
 
     const {
-      contactUsLink,
+      websiteConfig,
       radioStationResponseHolder,
       radioStationStreamsResponseHolder,
       radioStationSongsResponseHolder,
@@ -24,14 +25,23 @@ class RadioStationPage extends Component {
       requestTitle
     } = this.props;
 
+    if (!websiteConfig) {
+      throw new Error('Website config is undefined.');
+    }
+
+    const {
+      contactUsLink,
+      websiteName
+    } = websiteConfig;
+
     return (
       <div>
         <Head>
-          <title>{requestTitle} search results of Internet Radio, Free Music | OnlineRadioSearch.com</title>
+          <title>{requestTitle} search results of Internet Radio, Free Music | {websiteName}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <NavBar contactUsLink={contactUsLink} />
+        <NavBar websiteConfig={websiteConfig} />
 
         <RadioStationInfoPanel
           radioStationResponseHolder={radioStationResponseHolder}
@@ -40,7 +50,7 @@ class RadioStationPage extends Component {
         />
 
         <Footer
-          contactUsLink={contactUsLink}
+          websiteConfig={websiteConfig}
           lastSearhesResponseHolder={lastSearhesResponseHolder}
         />
 
@@ -89,7 +99,7 @@ RadioStationPage.getInitialProps = async (router) => {
   ]);
 
   return {
-    contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
+    ...extract(publicRuntimeConfig),
     radioStationResponseHolder,
     radioStationStreamsResponseHolder,
     radioStationSongsResponseHolder,

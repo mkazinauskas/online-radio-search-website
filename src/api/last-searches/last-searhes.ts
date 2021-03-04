@@ -55,7 +55,6 @@ export class LastSearch {
     created: Date;
 
     constructor(data: any) {
-        console.log(data);
         this.id = data.id;
         this.query = data.query;
         this.type = data.type;

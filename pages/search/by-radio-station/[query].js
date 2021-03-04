@@ -8,24 +8,30 @@ import RadioStationsResults from '../../../src/components/search/radio-stations-
 import { RadioStationsSearch } from '../../../src/api/search/radio-stations-search';
 import { withRouter } from 'next/router'
 import { LastSearches } from '../../../src/api/last-searches/last-searhes';
+import extract from '../../../src/utils/website-config';
 
 class SearchByRadioStation extends Component {
 
   render() {
-    const { contactUsLink, radioStationsSearchResponseHolder, lastSearhesResponseHolder, query} = this.props;
+    const { websiteConfig, radioStationsSearchResponseHolder, lastSearhesResponseHolder, query } = this.props;
 
+    if(!websiteConfig){
+      throw new Error('Website config is undefined.');
+    }
+
+    const { websiteName } = websiteConfig;
     return (
       <div>
         <Head>
-          <title>{query} Internet Radio Search Results, Listen to Free Music | OnlineRadioSearch.com</title>
+          <title>{query} Internet Radio Search Results, Listen to Free Music | {websiteName}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <NavBar contactUsLink={contactUsLink} />
+        <NavBar websiteConfig={websiteConfig} />
 
         <RadioStationsResults radioStationsSearchResponseHolder={radioStationsSearchResponseHolder} />
 
-        <Footer contactUsLink={contactUsLink} lastSearhesResponseHolder={lastSearhesResponseHolder} />
+        <Footer websiteConfig={websiteConfig} lastSearhesResponseHolder={lastSearhesResponseHolder} />
 
       </div>
     )
@@ -39,7 +45,7 @@ SearchByRadioStation.getInitialProps = async (router) => {
   const { query, page, size } = router.query
 
 
-  const cleanQuery =  query.replaceAll('-', ' ');
+  const cleanQuery = query.replaceAll('-', ' ');
 
   const radioStationsSearchApi = await new RadioStationsSearch(
     publicRuntimeConfig.API_URL,
@@ -63,7 +69,7 @@ SearchByRadioStation.getInitialProps = async (router) => {
   ]);
 
   return {
-    contactUsLink: publicRuntimeConfig.CONTACT_US_LINK,
+    ...extract(publicRuntimeConfig),
     radioStationsSearchResponseHolder,
     lastSearhesResponseHolder,
     query: cleanQuery
