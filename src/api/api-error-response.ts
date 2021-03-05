@@ -1,6 +1,6 @@
 class ApiErrorResponse{
     id: string;
-    fields: [string];
+    fields: string[];
     message: string;
 
 

@@ -35,7 +35,7 @@ export class RadioStationResponse {
   description: string;
   website: string;
   logoUrl: string;
-  genres: [Genre] | null;
+  genres: Genre[] | null;
 
   constructor(data: any) {
     this.id = data.id;

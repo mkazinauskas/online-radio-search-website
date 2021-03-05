@@ -48,7 +48,7 @@ export class RadioStationsSearchResponse {
   totalElements: number;
   totalPages: number;
   number: number;
-  data: [SingleRadioStationResult];
+  data: SingleRadioStationResult[];
 
   constructor(query: string, data: any,) {
     this.query = query;
@@ -56,7 +56,11 @@ export class RadioStationsSearchResponse {
     this.totalElements = data.page.totalElements;
     this.totalPages = data.page.totalPages;
     this.number = data.page.number;
-    this.data = data._embedded.searchRadioStationResultResponseList.map((item: any) => new SingleRadioStationResult(item));
+    if (!data._embedded) {
+      this.data = [] as SingleRadioStationResult[];
+      return;
+    }
+    this.data = data._embedded?.searchRadioStationResultResponseList?.map((item: any) => new SingleRadioStationResult(item));
   }
 
 }

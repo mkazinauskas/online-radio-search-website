@@ -1,5 +1,5 @@
 import NoSearchResultsComponent from "./no-search-results-component";
-import { RadioStationsSearch, RadioStationsSearchResponse, SingleRadioStationResult } from '../../api/search/radio-stations-search';
+import { RadioStationsSearchResponse, SingleRadioStationResult } from '../../api/search/radio-stations-search';
 import PaginationComponent from "./pagination-component";
 import SearchTypeTabsComponent, { ActiveTabType } from "./search-type-tabs-component";
 import { toSeoText } from "../../utils/seo-tools";
@@ -22,14 +22,15 @@ function RadioStationsResults(params: { radioStationsSearchResponseHolder: ApiRe
         throw new Error('No Radio Station search results');
     }
 
-    const radioStationResults = searchResults?.data!.map(item => stationResult(item));
+    const noResults = (<h2 className="text-xl text-center mt-8 font-bold">Sorry, no results...</h2>);
+    const radioStationResults = searchResults.data?.map(item => stationResult(item));
 
     return (
         <section className="bg-gray-50">
             <div className="container mx-auto">
                 <h1 className="text-2xl mx-2 md:mx-auto text-secondary font-bold flex-1 md:py-16 py-5 text-center">Radio stations with name: "{searchResults.query}"</h1>
                 <SearchTypeTabsComponent query={searchResults.query} activeTab={ActiveTabType.RADIO_STATIONS} />
-                {radioStationResults}
+                {radioStationResults.length ? radioStationResults : noResults}
                 <PaginationComponent baseUrl='/search/by-radio-station' query={searchResults.query} currentPage={searchResults.number} lastPage={searchResults.totalPages} />
             </div>
         </section>
@@ -37,8 +38,8 @@ function RadioStationsResults(params: { radioStationsSearchResponseHolder: ApiRe
 
 }
 
-function stationResult(item?: SingleRadioStationResult) {
-    if (item === undefined) {
+function stationResult(item?: SingleRadioStationResult): JSX.Element {
+    if (!item) {
         throw Error('Item is not defined!')
     }
 
