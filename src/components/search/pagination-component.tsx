@@ -32,8 +32,6 @@ function PaginationComponent(params: { baseUrl: string, query: string, currentPa
         buttons.push(button('Previous', baseLink + '?page=' + (currentPage - 1)));
     }
 
-    console.log(currentPage);
-    console.log(lastPage);
     if (currentPage < lastPage - 1) {
         buttons.push(button('Next', baseLink + '?page=' + (currentPage + 1)));
     } else {
