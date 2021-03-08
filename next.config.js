@@ -11,4 +11,12 @@ module.exports = {
         WEBSITE_NAME: process.env.NEXT_PUBLIC_WEBSITE_NAME,
         WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
     },
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: 'https://api.onlineradiosearch.com/:path*'
+            }
+        ]
+    },
 }
