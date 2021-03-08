@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ApiResponseHolder from "../api/api-response-holder";
 import { LastSearch, LastSearchesResponse } from "../api/last-searches/last-searhes";
 import { toSeoText } from "../utils/seo-tools";
@@ -14,7 +15,7 @@ interface TypeToConfigMapType {
 const configFromType: TypeToConfigMapType = {
     'song': { textTitle: 'song', linkPrefix: '/search/by-song/' },
     'radiostation': { textTitle: 'radio station', linkPrefix: '/search/by-radio-station/' },
-    'genre': { textTitle: 'genre', linkPrefix: '/search/by-genre/'}
+    'genre': { textTitle: 'genre', linkPrefix: '/search/by-genre/' }
 }
 
 function LastSearchesComponent(params: { lastSearhesResponseHolder: ApiResponseHolder<LastSearchesResponse> }): JSX.Element {
@@ -28,7 +29,7 @@ function LastSearchesComponent(params: { lastSearhesResponseHolder: ApiResponseH
         return (<></>);
     }
 
-    const { searches } = lastSearhesResponseHolder.response;
+    const { searches } = lastSearhesResponseHolder.response as LastSearchesResponse;
 
     const searchLinks = searches
         .map((search: LastSearch) => createLink(search))
@@ -51,7 +52,11 @@ function createLink(search: LastSearch) {
     const data = configFromType[search.type]
     const linkText = `${search.query} ${data.textTitle}`;
     const link = `${data.linkPrefix}${toSeoText(search.query)}`;
-    return (<a key={search.id} href={link} className="hover:text-gray-900 no-underline hover:underline">{linkText}</a>)
+    return (
+        <Link key={search.id} href={link} >
+            <a className="hover:text-gray-900 no-underline hover:underline">{linkText}</a>
+        </Link>
+    )
 }
 
 

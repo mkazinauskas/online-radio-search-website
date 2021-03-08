@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './search-bar';
+import Link from 'next/link';
 
 class HeaderLeader extends Component {
 
-    state = { 
+    state = {
         showMenu: false
     }
 
@@ -19,17 +20,25 @@ class HeaderLeader extends Component {
 
                     <nav className="relative z-50 h-24">
                         <div className="container relative flex flex-wrap items-center justify-between h-24 mx-auto font-medium lg:justify-center sm:px-4 md:px-2">
-                            <a href="/" className="w-1/4 py-4 pr-4 text-white md:py-0 hover:text-gray-400 hover:no-underline">
-                                <span className="text-xl logo break-normal">{websiteName}</span>
-                            </a>
+                            <Link href="/">
+                                <a className="w-1/4 py-4 pr-4 text-white md:py-0 hover:text-gray-400 hover:no-underline">
+                                    <span className="text-xl logo break-normal">{websiteName}</span>
+                                </a>
+                            </Link>
                             <div className={`top-0 left-0 items-start w-full h-full p-4 text-sm bg-gray-900 bg-opacity-50 md:w-3/4 lg:text-base md:h-auto md:bg-transparent md:p-0 md:relative md:flex ${this.state.showMenu ? 'flext fixed' : 'hidden'}`} >
                                 <div className="flex-col bg-gray-700 w-full h-auto overflow-hidden rounded-lg select-none md:bg-transparent md:rounded-none md:relative md:flex md:flex-row md:overflow-auto">
-                                    <a href="/" className="items-center block w-auto h-16 px-6 text-xl font-black leading-none text-white hover:text-gray-400 select-none md:hidden">{websiteName}</a>
+                                    <Link href="/">
+                                        <a className="items-center block w-auto h-16 px-6 text-xl font-black leading-none text-white hover:text-gray-400 select-none md:hidden">{websiteName}</a>
+                                    </Link>
                                     <div className="flex flex-col items-start justify-center w-full text-center md:w-2/3 md:mt-0 md:flex-row md:items-center">
-                                        <a href="/" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-white hover:text-gray-400 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center hover:no-underline">Home</a>
+                                        <Link href="/">
+                                            <a className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-white hover:text-gray-400 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center hover:no-underline">Home</a>
+                                        </Link>
                                         <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Features</a>
                                         <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Blog</a>
-                                        <a href={contactUsLink} target="_blank" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Contact</a>
+                                        <Link href={contactUsLink}>
+                                            <a target="_blank" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Contact</a>
+                                        </Link>
                                     </div>
                                     <div className="flex flex-col justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0 items-center">
                                         <div className="flex items-center m-2">

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { Component } from 'react';
 
 class NavBar extends Component {
@@ -21,8 +22,9 @@ class NavBar extends Component {
                     <div className="flex flex-col lg:flex-row md:justify-between lg:items-center">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                                <a className="text-sm font-bold text-gray-800 dark:text-white lg:text-2xl hover:text-gray-600 hover:no-underline" href="/">{websiteName}</a>
-
+                                <Link href="/">
+                                    <a className="text-sm font-bold text-gray-800 dark:text-white lg:text-2xl hover:text-gray-600 hover:no-underline" >{websiteName}</a>
+                                </Link>
                                 <div className="hidden mx-5 xl:mx-10 lg:block">
                                     <div className="relative">
                                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -47,10 +49,14 @@ class NavBar extends Component {
 
                         <div className={`items-center lg:flex ${this.state.showMenu ? '' : 'hidden'}`}>
                             <div className="flex flex-col mt-2 lg:flex-row lg:mt-0 lg:mx-1">
-                                <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href="/">Home</a>
+                                <Link href="/">
+                                    <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0">Home</a>
+                                </Link>
                                 <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href="#">Blog</a>
                                 <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href="#">Compoents</a>
-                                <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href={contactUsLink} target="_blank">Contact</a>
+                                <Link href={contactUsLink}>
+                                    <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" target="_blank">Contact</a>
+                                </Link>
                             </div>
 
                             <div className="flex items-center py-2 -mx-1 lg:mx-0">
