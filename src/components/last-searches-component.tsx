@@ -48,7 +48,7 @@ function LastSearchesComponent(params: { lastSearhesResponseHolder: ApiResponseH
     );
 }
 
-function createLink(search: LastSearch) {
+function createLink(search: LastSearch): JSX.Element {
     const data = configFromType[search.type]
     const linkText = `${search.query} ${data.textTitle}`;
     const link = `${data.linkPrefix}${toSeoText(search.query)}`;
