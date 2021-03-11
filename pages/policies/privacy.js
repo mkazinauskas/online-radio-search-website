@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import getConfig from 'next/config'
-import NavBar from '../../src/components/navbar';
+import NavBar from '../../src/components/navbar/navbar';
 import React, { Component } from 'react';
 import Footer from '../../src/components/footer';
 import { withRouter } from 'next/router'

@@ -8,3 +8,10 @@ export function toSeoText(text: string) {
         .replace(/^-*/, '')
         .replace(/-*$/, '')
 }
+
+export function unSeoText(text: string) {
+    if (!text) {
+        return '';
+    }
+    return text.replaceAll('-', ' ');
+}

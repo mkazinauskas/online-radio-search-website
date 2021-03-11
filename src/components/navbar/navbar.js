@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { Component } from 'react';
+import SearchBar from './search-bar';
 
 class NavBar extends Component {
 
@@ -33,7 +34,8 @@ class NavBar extends Component {
                                             </svg>
                                         </span>
 
-                                        <input type="text" className="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" placeholder="Search" />
+                                        <SearchBar />
+
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +76,7 @@ class NavBar extends Component {
                                     </svg>
                                 </span>
 
-                                <input type="text" className="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" placeholder="Search" />
+                                <SearchBar />
                             </div>
                         </div>
                     </div>

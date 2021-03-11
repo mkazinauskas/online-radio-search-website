@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import getConfig from 'next/config'
 import "tailwindcss/tailwind.css";
-import NavBar from '../../../src/components/navbar';
+import NavBar from '../../../src/components/navbar/navbar';
 import React, { Component } from 'react';
 import Footer from '../../../src/components/footer';
 import RadioStationsResults from '../../../src/components/search/radio-stations-results';
@@ -75,5 +75,7 @@ SearchByRadioStation.getInitialProps = async (router) => {
     query: cleanQuery
   }
 }
+
+export const URL_PATH = '/search/by-radio-station';
 
 export default withRouter(SearchByRadioStation);
