@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function SearchTypeTabsComponent(params: { query: string, activeTab: ActiveTabType }) {
 
     const { query, activeTab } = params;
@@ -18,9 +20,11 @@ function createTabItem(title: string, isActive: boolean, linkBase: string, query
     const fullLink = `${linkBase}/${query.replaceAll(' ', '-').toLocaleLowerCase()}`;
 
     return (
-        <a href={isActive ? '#' : fullLink} className={`block py-2 px-6 md:rounded-t-lg ${isActive ? 'bg-gray-100 cursor-not-allowed' : 'text-gray-500 bg-gray-200 hover:bg-blue-500 hover:text-white'}`}>
-            {title}
-        </a>
+        <Link href={fullLink}>
+            <a className={`block py-2 px-6 md:rounded-t-lg ${isActive ? 'bg-gray-100 cursor-not-allowed' : 'text-gray-500 bg-gray-200 hover:bg-blue-500 hover:text-white'}`}>
+                {title}
+            </a>
+        </Link>
     )
 }
 

@@ -4,16 +4,16 @@ import "tailwindcss/tailwind.css";
 import NavBar from '../../../src/components/navbar/navbar';
 import React, { Component } from 'react';
 import Footer from '../../../src/components/footer';
-import RadioStationsResults from '../../../src/components/search/radio-stations-results';
-import { RadioStationsSearchByTitle } from '../../../src/api/search/radio-stations-search-by-title';
+import { SearchSong } from '../../../src/api/search/search-song';
 import { withRouter } from 'next/router'
 import { LastSearches } from '../../../src/api/last-searches/last-searhes';
 import extract from '../../../src/utils/website-config';
+import SongsResult from '../../../src/components/search/songs-results'
 
 class SearchByRadioStation extends Component {
 
   render() {
-    const { websiteConfig, radioStationsSearchResponseHolder, lastSearhesResponseHolder, query } = this.props;
+    const { websiteConfig, searchSongResponseHolder, lastSearhesResponseHolder, query } = this.props;
 
     if(!websiteConfig){
       throw new Error('Website config is undefined.');
@@ -23,13 +23,13 @@ class SearchByRadioStation extends Component {
     return (
       <div>
         <Head>
-          <title>{query} Internet Radio Search Results, Listen to Free Music | {websiteName}</title>
+          <title>{query} Songs Played Results, Listen to Free Music | {websiteName}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <NavBar websiteConfig={websiteConfig} />
 
-        <RadioStationsResults radioStationsSearchResponseHolder={radioStationsSearchResponseHolder} />
+        <SongsResult searchSongResponseHolder={searchSongResponseHolder} />
 
         <Footer websiteConfig={websiteConfig} lastSearhesResponseHolder={lastSearhesResponseHolder} />
 
@@ -47,7 +47,7 @@ SearchByRadioStation.getInitialProps = async (router) => {
 
   const cleanQuery = query.replaceAll('-', ' ');
 
-  const radioStationsSearchApi = await new RadioStationsSearchByTitle(
+  const searchSongApi = await new SearchSong(
     publicRuntimeConfig.API_URL,
     cleanQuery,
     page,
@@ -61,21 +61,21 @@ SearchByRadioStation.getInitialProps = async (router) => {
   )
 
   const [
-    radioStationsSearchResponseHolder,
+    searchSongResponseHolder,
     lastSearhesResponseHolder
   ] = await Promise.all([
-    radioStationsSearchApi.execute(),
+    searchSongApi.execute(),
     lastSearhesApi.execute()
   ]);
 
   return {
     ...extract(publicRuntimeConfig),
-    radioStationsSearchResponseHolder,
+    searchSongResponseHolder,
     lastSearhesResponseHolder,
     query: cleanQuery
   }
 }
 
-export const URL_PATH = '/search/by-radio-station';
+export const URL_PATH = '/search/by-song';
 
 export default withRouter(SearchByRadioStation);

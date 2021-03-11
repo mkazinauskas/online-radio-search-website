@@ -2,7 +2,7 @@ import axios from 'axios';
 import ApiErrorResponse from '../api-error-response';
 import ApiResponseHolder from '../api-response-holder';
 
-export class RadioStationsSearch {
+export class SearchSong {
   _apiUrl: string;
   _title: string;
   _page: number;
@@ -22,33 +22,33 @@ export class RadioStationsSearch {
 
   execute = async () => {
     try {
-      const resp = await axios.get(`${this._apiUrl}/search/radio-station`, {
+      const resp = await axios.get(`${this._apiUrl}/search/song`, {
         params: {
           title: this._title,
           page: this._page,
           size: this._size
         }
       });
-      return new ApiResponseHolder<RadioStationsSearchResponse>(
-        undefined, new RadioStationsSearchResponse(
+      return new ApiResponseHolder<SearchSongResponse>(
+        undefined, new SearchSongResponse(
           this._title,
           resp.data
         )
       )
     } catch (err) {
       console.error(err);
-      return new ApiResponseHolder<RadioStationsSearchResponse>(new ApiErrorResponse(err), undefined);
+      return new ApiResponseHolder<SearchSongResponse>(new ApiErrorResponse(err), undefined);
     }
   }
 }
 
-export class RadioStationsSearchResponse {
+export class SearchSongResponse {
   query: string;
   size: number;
   totalElements: number;
   totalPages: number;
   number: number;
-  data: SingleRadioStationResult[];
+  data: SingSongResult[];
 
   constructor(query: string, data: any,) {
     this.query = query;
@@ -57,34 +57,32 @@ export class RadioStationsSearchResponse {
     this.totalPages = data.page.totalPages;
     this.number = data.page.number;
     if (!data._embedded) {
-      this.data = [] as SingleRadioStationResult[];
+      this.data = [] as SingSongResult[];
       return;
     }
-    this.data = data._embedded?.searchRadioStationResultResponseList?.map((item: any) => new SingleRadioStationResult(item));
+    this.data = data._embedded?.searchSongResultResponseList?.map((item: any) => new SingSongResult(item));
   }
 
 }
 
-export class SingleRadioStationResult {
+export class SingSongResult {
   id: number;
   title: string;
-  website: string;
   description: string;
   logoUrl: string;
 
   constructor(item: any) {
     this.id = item.id;
     this.title = item.title;
-    this.website = item.website;
-    this.description = this._createDescription(item.title);
+    this.description = this._createDescription(this.title);
     this.logoUrl = this._noLogo();
   }
 
   _noLogo = () => {
-    return '/img/main/no-logo.jpg';
+    return '/img/main/no-logo-song.jpg';
   }
 
   _createDescription = (title: String) => {
-    return `Streaming live around the world 24/7. ${title} is number one internet radio station, Bringing you the very best in uplifting Funky, Soulful & Electro House music, 4x4, 2Step, Underground and UK Garage, Dubstep, Drum & Bass & Old Skool Club Classics.`
+    return `${title} delivers an emotionally driven journey that showcases a wild terrain filled with great music sounds on ${title}.`
   }
 }
