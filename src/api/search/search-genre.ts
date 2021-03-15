@@ -2,7 +2,7 @@ import axios from 'axios';
 import ApiErrorResponse from '../api-error-response';
 import ApiResponseHolder from '../api-response-holder';
 
-export class SearchSong {
+export class SearchGenre {
   _apiUrl: string;
   _title: string;
   _page: number;
@@ -22,33 +22,33 @@ export class SearchSong {
 
   execute = async () => {
     try {
-      const resp = await axios.get(`${this._apiUrl}/search/song`, {
+      const resp = await axios.get(`${this._apiUrl}/search/genre`, {
         params: {
           title: this._title,
           page: this._page,
           size: this._size
         }
       });
-      return new ApiResponseHolder<SearchSongResponse>(
-        undefined, new SearchSongResponse(
+      return new ApiResponseHolder<SearchGenreResponse>(
+        undefined, new SearchGenreResponse(
           this._title,
           resp.data
         )
       )
     } catch (err) {
       console.error(err);
-      return new ApiResponseHolder<SearchSongResponse>(new ApiErrorResponse(err), undefined);
+      return new ApiResponseHolder<SearchGenreResponse>(new ApiErrorResponse(err), undefined);
     }
   }
 }
 
-export class SearchSongResponse {
+export class SearchGenreResponse {
   query: string;
   size: number;
   totalElements: number;
   totalPages: number;
   number: number;
-  data: SingleSongResult[];
+  data: SingleGenreResult[];
 
   constructor(query: string, data: any,) {
     this.query = query;
@@ -57,15 +57,15 @@ export class SearchSongResponse {
     this.totalPages = data.page.totalPages;
     this.number = data.page.number;
     if (!data._embedded) {
-      this.data = [] as SingleSongResult[];
+      this.data = [] as SingleGenreResult[];
       return;
     }
-    this.data = data._embedded?.searchSongResultResponseList?.map((item: any) => new SingleSongResult(item));
+    this.data = data._embedded?.searchGenreResultResponseList?.map((item: any) => new SingleGenreResult(item));
   }
 
 }
 
-export class SingleSongResult {
+export class SingleGenreResult {
   id: number;
   title: string;
   description: string;
@@ -79,7 +79,7 @@ export class SingleSongResult {
   }
 
   _noLogo = () => {
-    return '/img/main/no-logo-song.jpg';
+    return '/img/main/no-logo-genre.jpg';
   }
 
   _createDescription = (title: String) => {
