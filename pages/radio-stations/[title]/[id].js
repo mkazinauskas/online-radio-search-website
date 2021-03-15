@@ -30,7 +30,6 @@ class RadioStationPage extends Component {
     }
 
     const {
-      contactUsLink,
       websiteName
     } = websiteConfig;
 
