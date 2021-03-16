@@ -1,7 +1,6 @@
 import NoSearchResultsComponent from "./no-search-results-component";
-import { RadioStationsSearchResponse, SingleRadioStationResult } from '../../api/search/radio-stations-search-by-title';
+import { SingleRadioStationResult } from '../../api/search/radio-stations-search-by-title';
 import PaginationComponent from "./pagination-component";
-import SearchTypeTabsComponent, { ActiveTabType } from "./search-type-tabs-component";
 import { toSeoText } from "../../utils/seo-tools";
 import ApiResponseHolder from "../../api/api-response-holder";
 import Link from "next/link";
