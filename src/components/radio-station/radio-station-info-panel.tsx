@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ApiErrorResponse from '../../api/api-error-response';
 import ApiResponseHolder from '../../api/api-response-holder';
 import { RadioStationResponse, Genre } from '../../api/radio-station/radio-station-info';
@@ -73,7 +74,7 @@ function _streams(streams: RadioStationStream[]) {
     const streamsTable = streams.map(stream => (
         <li className="flex items-center space-x-3 hover:bg-gray-100" key={stream.id}>
              <StreamPlayButton key={stream.id} streamUrl={stream.url}/>
-            <div className="hidden break-all lg:block lg:flex-1">{stream.url}</div>
+            <div className="hidden break-all lg:block lg:flex-1"><Link href={stream.url}><a target="_blank">{stream.url}</a></Link></div>
             <div className="flex-1">{stream.bitrate ? stream.bitrate : 'unknown'}</div>
             <div className="flex-1">{stream.type}</div>
             <a href="#" className="focus:outline-none group p-3 md:pl-14">
