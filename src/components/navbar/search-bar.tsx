@@ -2,7 +2,7 @@ import React, { Component, FormEvent, useEffect } from 'react';
 import { Router, withRouter } from 'next/router';
 import { WithRouterProps } from 'next/dist/client/with-router';
 import { toSeoText, unSeoText } from '../../utils/seo-tools';
-import { URL_PATH } from '../../../pages/search/by-radio-station/[query]'
+import Paths from '../../paths';
 
 class SearchBar extends Component<WithRouterProps>{
 
@@ -37,8 +37,16 @@ class SearchBar extends Component<WithRouterProps>{
     onSubmit = (event: FormEvent): void => {
         event.preventDefault();
 
+        let pathForSearch = Paths.SEARCH_BY_RADIO_STATION;
+        if(this.router.pathname.startsWith(Paths.SEARCH_BY_SONG)){
+            pathForSearch = Paths.SEARCH_BY_SONG
+        }
+        if(this.router.pathname.startsWith(Paths.SEARCH_BY_GENRE)){
+            pathForSearch = Paths.SEARCH_BY_GENRE
+        }
+
         const safeQuery = toSeoText(this.state.query);
-        this.router.push(`${URL_PATH}/${safeQuery}`);
+        this.router.push(`${pathForSearch}/${safeQuery}`);
     }
 
 }

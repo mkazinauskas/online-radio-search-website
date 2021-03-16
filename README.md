@@ -12,9 +12,6 @@ Website for Online Radio Search
 To close the app press `ctrl + c`
 
 TODO:
-1. Search execution from search input
-1. Search by genre
-1. Search by song
 1. Sitemap
 1. App download
 1. Go to next page of songs in radio station view.

@@ -76,6 +76,4 @@ SearchByGenre.getInitialProps = async (router) => {
   }
 }
 
-export const URL_PATH = '/search/by-genre';
-
 export default withRouter(SearchByGenre);

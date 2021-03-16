@@ -76,6 +76,4 @@ RadioStationsByGenrePage.getInitialProps = async (router) => {
   }
 }
 
-export const URL_PATH = '/search/by-radio-station';
-
 export default withRouter(RadioStationsByGenrePage);

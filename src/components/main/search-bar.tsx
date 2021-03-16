@@ -2,7 +2,7 @@ import React, { Component, FormEvent } from 'react';
 import { Router, withRouter, NextRouter } from 'next/router';
 import { WithRouterProps } from 'next/dist/client/with-router';
 import { toSeoText } from '../../utils/seo-tools';
-import SearchByRadioStation, { URL_PATH } from '../../../pages/search/by-radio-station/[query]'
+import Paths from '../../paths';
 
 class SearchBar extends Component<WithRouterProps>{
 
@@ -55,7 +55,7 @@ class SearchBar extends Component<WithRouterProps>{
     onSubmit = (event: FormEvent): void => {
         event.preventDefault();
         const safeQuery = toSeoText(this.state.query);
-        this.router.push(`${URL_PATH}/${safeQuery}`);
+        this.router.push(`${Paths.SEARCH_BY_RADIO_STATION}/${safeQuery}`);
     }
 
 }
