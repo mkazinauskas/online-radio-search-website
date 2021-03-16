@@ -4,6 +4,7 @@ import { RadioStationResponse, Genre } from '../../api/radio-station/radio-stati
 import { RadioStationSong, RadioStationSongsResponse } from '../../api/radio-station/radio-station-songs';
 import { RadioStationStream, RadioStationStreams, RadioStationStreamsResponse } from '../../api/radio-station/radio-station-streams';
 import NoRadioStationFoundComponent from './no-radio-station-found-component'
+import StreamPlayButton from './stream-play-button';
 
 function RadioStationInfoPanel(params: {
     radioStationResponseHolder: ApiResponseHolder<RadioStationResponse>,
@@ -71,9 +72,7 @@ function websiteUrlFix(url: string) {
 function _streams(streams: RadioStationStream[]) {
     const streamsTable = streams.map(stream => (
         <li className="flex items-center space-x-3 hover:bg-gray-100" key={stream.id}>
-            <button className="p-3 hover:bg-green-500 group focus:outline-none">
-                <svg className="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            </button>
+             <StreamPlayButton key={stream.id} streamUrl={stream.url}/>
             <div className="hidden break-all lg:block lg:flex-1">{stream.url}</div>
             <div className="flex-1">{stream.bitrate ? stream.bitrate : 'unknown'}</div>
             <div className="flex-1">{stream.type}</div>

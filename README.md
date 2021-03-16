@@ -12,6 +12,7 @@ Website for Online Radio Search
 To close the app press `ctrl + c`
 
 TODO:
+1. Play radio station button
 1. Sitemap
 1. App download
 1. Go to next page of songs in radio station view.
