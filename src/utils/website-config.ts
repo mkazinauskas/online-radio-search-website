@@ -1,5 +1,3 @@
-import { error } from "console";
-
 function require(dataHolder: any, property: string): string {
     const value = dataHolder[property];
     if (!value) {
@@ -10,6 +8,11 @@ function require(dataHolder: any, property: string): string {
 
 export interface WebsiteConfig {
     contactUsLink: string,
+    facebookLink: string,
+    instagramLink: string,
+    twitterLink: string,
+    githubLink: string,
+    dribbleLink: string,
     contactEmail: string,
     websiteName: string,
     websiteUrl: string
@@ -19,6 +22,11 @@ export default function extract(dataHolder: any): { websiteConfig: WebsiteConfig
     return {
         websiteConfig: {
             contactUsLink: require(dataHolder, 'CONTACT_US_LINK'),
+            facebookLink: require(dataHolder, 'FACEBOOK_LINK'),
+            instagramLink: require(dataHolder, 'INSTAGRAM_LINK'),
+            twitterLink: require(dataHolder, 'TWITTER_LINK'),
+            githubLink: require(dataHolder, 'GITHUB_LINK'),
+            dribbleLink: require(dataHolder, 'DRIBBLE_LINK'),
             contactEmail: require(dataHolder, 'CONTACT_EMAIL'),
             websiteName: require(dataHolder, 'WEBSITE_NAME'),
             websiteUrl: require(dataHolder, 'WEBSITE_URL')

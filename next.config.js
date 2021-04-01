@@ -6,6 +6,11 @@ module.exports = {
     publicRuntimeConfig: {
         CURRENT_ENV: process.env.NEXT_PUBLIC_CURRENT_ENV,
         CONTACT_US_LINK: process.env.NEXT_PUBLIC_CONTACT_US_LINK,
+        FACEBOOK_LINK: process.env.NEXT_PUBLIC_FACEBOOK_LINK,
+        INSTAGRAM_LINK: process.env.NEXT_PUBLIC_INSTAGRAM_LINK,
+        TWITTER_LINK: process.env.NEXT_PUBLIC_TWITTER_LINK,
+        GITHUB_LINK: process.env.NEXT_PUBLIC_GITHUB_LINK,
+        DRIBBLE_LINK: process.env.NEXT_PUBLIC_DRIBBLE_LINK,
         CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
         API_URL: process.env.NEXT_PUBLIC_API_URL,
         WEBSITE_NAME: process.env.NEXT_PUBLIC_WEBSITE_NAME,
