@@ -1,10 +1,10 @@
 import { RadioStationSong } from "../../../api/radio-station/radio-station-songs";
 
-function RadioStationSongsPanel(params: {songs: RadioStationSong[] | undefined | null}) {
+function RadioStationSongsPanel(params: { songs: RadioStationSong[] | undefined | null }) {
 
-   const {songs} = params;
+    const { songs } = params;
 
-    if (!songs || songs === []) {
+    if (!songs || songs.length === 0) {
         return (
             <></>
         );

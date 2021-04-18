@@ -62,7 +62,9 @@ class RadioStationPage extends Component {
 RadioStationPage.getInitialProps = async (router) => {
   const { publicRuntimeConfig } = getConfig()
 
-  const { id, title } = router.query
+  const { id, title, page: songsPage } = router.query
+
+  console.log(songsPage);
 
   const radioStationApi = new RadioStationInfo(
     publicRuntimeConfig.API_URL,
@@ -76,7 +78,8 @@ RadioStationPage.getInitialProps = async (router) => {
 
   const radioStationSongsApi = new RadioStationSongs(
     publicRuntimeConfig.API_URL,
-    id
+    id,
+    songsPage
   )
 
   const lastSearhesApi = new LastSearches(

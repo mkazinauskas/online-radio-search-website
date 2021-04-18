@@ -1,5 +1,26 @@
-function SongsPaginationComponent(params: { baseUrl: string, currentPage: number, lastPage: number }) {
-    const { baseUrl, currentPage, lastPage } = params;
+import { RadioStationResponse } from "../../../api/radio-station/radio-station-info";
+import { RadioStationSongs, RadioStationSongsResponse } from "../../../api/radio-station/radio-station-songs";
+import { toSeoText } from "../../../utils/seo-tools";
+
+type SongsPaginationComponentParamsType = {
+    radioStation: RadioStationResponse | undefined | null,
+    songs: RadioStationSongsResponse | undefined | null
+};
+
+function SongsPaginationComponent(params: SongsPaginationComponentParamsType) {
+
+    const { radioStation, songs } = params;
+
+    if (songs?.page?.totalPages == 0) {
+        return (
+            <></>
+        )
+    }
+
+    const baseUrl = `/radio-stations/${toSeoText(radioStation?.title)}/${radioStation?.id}`
+    let currentPage = songs?.page?.number;
+    const lastPage = songs?.page?.totalPages;
+
 
     if (baseUrl === undefined) {
         throw Error('Base is not defined!')

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import ApiErrorResponse from '../api-error-response';
 import ApiResponseHolder from '../api-response-holder';
+import ResponsePageType from '../response-page-type';
 
 export class RadioStationSongs {
 
@@ -17,9 +18,11 @@ export class RadioStationSongs {
   constructor(
     apiUrl: string,
     radioStationId: number,
+    page: number
   ) {
     this._apiUrl = apiUrl;
     this._radioStationId = radioStationId;
+    this._page = page;
   }
 
   execute = async (): Promise<ApiResponseHolder<RadioStationSongsResponse>> => {
@@ -48,14 +51,21 @@ export class RadioStationSongs {
 
 export class RadioStationSongsResponse {
 
+  page: ResponsePageType | null;
   songs: RadioStationSong[];
 
   constructor(data: any) {
     if (!data._embedded) {
       this.songs = [];
+      if (data.page) {
+        this.page = data.page;
+      } else {
+        this.page = null;
+      }
       return;
     }
     this.songs = data._embedded.radioStationSongResponseList.map((songData: any) => new RadioStationSong(songData));
+    this.page = data.page;
   }
 
 }

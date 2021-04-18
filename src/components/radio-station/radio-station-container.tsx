@@ -39,7 +39,7 @@ function RadioStationContainer(params: {
 
     const streams = radioStationStreamsResponseHolder.response?.streams;
 
-    const songs = radioStationSongsResponseHolder.response?.songs;
+    const songsResponse = radioStationSongsResponseHolder.response;
 
     return (
         <section className="bg-gray-50">
@@ -54,13 +54,9 @@ function RadioStationContainer(params: {
 
                     <RadioStationStreamsPanel streams={streams}/>
 
-                    <RadioStationSongsPanel songs={songs} />
+                    <RadioStationSongsPanel songs={songsResponse?.songs} />
 
-                    <SongsPaginationComponent
-                        baseUrl={`/radio-stations/${toSeoText(radioStation?.title)}/${radioStation?.id}`}
-                        currentPage={0}
-                        lastPage={10}
-                    />
+                    <SongsPaginationComponent songs={songsResponse} radioStation={radioStation} />
 
                 </div>
             </div>
