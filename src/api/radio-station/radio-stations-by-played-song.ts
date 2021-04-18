@@ -68,7 +68,13 @@ export class RadioStationsByPlayedSongResponse {
       this.data = [] as SingleRadioStationByPlayedSongResult[];
       return;
     }
-    this.data = data._embedded?.radioStationResponseList?.map((item: any) => new SingleRadioStationByPlayedSongResult(item));
+    this.data = data._embedded?.radioStationResponseList?.map((item: any) => new SingleRadioStationByPlayedSongResult(item))
+      .reduce((array: SingleRadioStationByPlayedSongResult[], current: SingleRadioStationByPlayedSongResult) => {
+        //Todo: Remove this when API will be fixed.
+        const existingIds = array.map(item => item.id);
+
+        return existingIds.includes(current.id) ? array : [...array, current];
+      });
   }
 
 }
