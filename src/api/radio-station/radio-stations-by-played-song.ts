@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { log } from 'node:console';
 import ApiErrorResponse from '../api-error-response';
 import ApiResponseHolder from '../api-response-holder';
 
@@ -69,12 +70,11 @@ export class RadioStationsByPlayedSongResponse {
       return;
     }
     this.data = data._embedded?.radioStationResponseList?.map((item: any) => new SingleRadioStationByPlayedSongResult(item))
-      .reduce((array: SingleRadioStationByPlayedSongResult[], current: SingleRadioStationByPlayedSongResult) => {
-        //Todo: Remove this when API will be fixed.
-        const existingIds = array.map(item => item.id);
-
-        return existingIds.includes(current.id) ? array : [...array, current];
-      });
+      .reduce((uniques: SingleRadioStationByPlayedSongResult[], current: SingleRadioStationByPlayedSongResult) => {
+        //TODO: remove when api will be fixed
+        const existingIds = uniques.map(item => item.id);
+        return existingIds.includes(current.id) ? uniques : [...uniques, current];
+      }, []);
   }
 
 }
