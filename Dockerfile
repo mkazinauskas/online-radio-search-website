@@ -1,16 +1,11 @@
-FROM node:15.8.0-alpine3.13 AS base
-RUN npm install -g npm
-
+FROM node:15.14.0-alpine3.10 AS base
+RUN npm install -g npm@7.10.0 && npm --version
 
 FROM base AS build
 ENV NODE_ENV=production
 WORKDIR /build
 
-COPY /package*.json ./
-COPY /pages ./pages
-COPY /public ./public
-COPY /styles ./styles
-COPY /next.config.js ./
+COPY / ./
 
 RUN npm install && npm run build
 
