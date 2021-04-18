@@ -34,8 +34,8 @@ class HeaderLeader extends Component {
                                         <Link href="/">
                                             <a className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-white hover:text-gray-400 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center hover:no-underline">Home</a>
                                         </Link>
-                                        <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Features</a>
-                                        <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Blog</a>
+                                        {/* <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Features</a> */}
+                                        {/* <a href="#" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Blog</a> */}
                                         <Link href={contactUsLink}>
                                             <a target="_blank" className="inline-block w-full px-6 py-2 mx-0 font-medium text-left text-gray-400 md:w-auto md:px-0 md:mx-2 hover:text-white lg:mx-3 md:text-center hover:no-underline">Contact</a>
                                         </Link>

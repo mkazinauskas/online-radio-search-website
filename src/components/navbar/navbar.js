@@ -54,18 +54,17 @@ class NavBar extends Component {
                                 <Link href="/">
                                     <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0">Home</a>
                                 </Link>
-                                <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href="#">Blog</a>
-                                <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href="#">Compoents</a>
+                                {/* <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href="#">Blog</a> */}
+                                {/* <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" href="#">Components</a> */}
                                 <Link href={contactUsLink}>
                                     <a className="my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 lg:mx-4 lg:my-0" target="_blank">Contact</a>
                                 </Link>
                             </div>
 
-                            <div className="flex items-center py-2 -mx-1 lg:mx-0">
+                            {/* <div className="flex items-center py-2 -mx-1 lg:mx-0">
                                 <a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded hover:bg-blue-600 lg:mx-2 lg:w-auto" href="#">Login</a>
                                 <a className="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 rounded hover:bg-blue-600 lg:mx-0 lg:w-auto" href="#">Join free</a>
-                            </div>
-
+                            </div> */}
 
                         </div>
                         <div className="mt-3 lg:hidden">

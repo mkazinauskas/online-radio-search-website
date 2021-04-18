@@ -1,9 +1,9 @@
+import Link from 'next/link';
+import { URL_PATH } from "../../pages/policies/privacy";
 import ApiResponseHolder from "../api/api-response-holder";
 import { LastSearchesResponse } from "../api/last-searches/last-searhes";
-import LastSearchesComponent from "./last-searches-component";
-import { URL_PATH } from "../../pages/policies/privacy";
 import { WebsiteConfig } from "../utils/website-config";
-import Link from 'next/link';
+import LastSearchesComponent from "./last-searches-component";
 
 interface BottomLink {
     text: string,
@@ -55,29 +55,29 @@ function Footer(params: { websiteConfig: WebsiteConfig, lastSearhesResponseHolde
             <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
                 <nav className="flex flex-wrap justify-center -mx-5 -my-2">
                     <div className="px-5 py-2">
-                        <a href="#" className="text-base leading-6 text-gray-500 hover:text-gray-900">
-                            About
-                </a>
+                        <Link href="/">
+                            <a className="text-base leading-6 text-gray-500 hover:text-gray-900">About</a>
+                        </Link>
                     </div>
-                    <div className="px-5 py-2">
+                    {/* <div className="px-5 py-2">
                         <a href="#" className="text-base leading-6 text-gray-500 hover:text-gray-900">
                             Blog
-                </a>
-                    </div>
-                    <div className="px-5 py-2">
+                    </a>
+                    </div> */}
+                    {/* <div className="px-5 py-2">
                         <a href="#" className="text-base leading-6 text-gray-500 hover:text-gray-900">
                             Team
                 </a>
-                    </div>
-                    <div className="px-5 py-2">
+                    </div> */}
+                    {/* <div className="px-5 py-2">
                         <a href="#" className="text-base leading-6 text-gray-500 hover:text-gray-900">
                             Pricing
                 </a>
-                    </div>
+                    </div> */}
                     <div className="px-5 py-2">
-                        <a href={contactUsLink} target="_blank" className="text-base leading-6 text-gray-500 hover:text-gray-900">
-                            Contact
-                </a>
+                        <Link href={contactUsLink}>
+                            <a target="_blank" className="text-base leading-6 text-gray-500 hover:text-gray-900">Contact</a>
+                        </Link>
                     </div>
                     <div className="px-5 py-2">
                         <Link href={URL_PATH} >
