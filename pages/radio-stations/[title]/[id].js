@@ -64,8 +64,6 @@ RadioStationPage.getInitialProps = async (router) => {
 
   const { id, title, page: songsPage } = router.query
 
-  console.log(songsPage);
-
   const radioStationApi = new RadioStationInfo(
     publicRuntimeConfig.API_URL,
     id

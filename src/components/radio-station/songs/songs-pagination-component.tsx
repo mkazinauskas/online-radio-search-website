@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { RadioStationResponse } from "../../../api/radio-station/radio-station-info";
 import { RadioStationSongs, RadioStationSongsResponse } from "../../../api/radio-station/radio-station-songs";
 import { toSeoText } from "../../../utils/seo-tools";
@@ -61,17 +62,19 @@ function SongsPaginationComponent(params: SongsPaginationComponentParamsType) {
 
 function buttonDisabled(title: string) {
     return (
-        <a key={`${title.toLocaleLowerCase()}-disabled`} className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
+        <span key={`${title.toLocaleLowerCase()}-disabled`} className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
             {title}
-        </a>
+        </span>
     );
 }
 
 function button(title: string, href: string) {
     return (
-        <a href={href} key={title.toLocaleLowerCase()} className="mx-1 px-3 py-2 bg-white text-gray-700 hover:bg-blue-500 hover:text-white font-medium rounded-md">
-            {title}
-        </a>
+        <Link href={href} key={title.toLocaleLowerCase()} >
+            <a className="mx-1 px-3 py-2 bg-white text-gray-700 hover:bg-blue-500 hover:text-white font-medium rounded-md">
+                {title}
+            </a>
+        </Link>
     );
 }
 

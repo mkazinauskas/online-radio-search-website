@@ -25,8 +25,6 @@ function GenreResults(params: { searchGenreResponseHolder: ApiResponseHolder<Sea
 
     const noResults = (<h2 className="text-xl text-center mt-8 font-bold">Sorry, no results for {searchResults.query} genre...</h2>);
     const results = searchResults.data?.map(item => result(item));
-    console.log(searchResults);
-    console.log(results);
 
     return (
         <section className="bg-gray-50">

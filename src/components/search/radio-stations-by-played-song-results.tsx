@@ -4,7 +4,7 @@ import PaginationComponent from "./pagination-component";
 import { toSeoText } from "../../utils/seo-tools";
 import ApiResponseHolder from "../../api/api-response-holder";
 import Link from "next/link";
-import { RadioStationsByPlayedSongResponse } from "../../api/radio-station/radio-stations-by-played-song";
+import { RadioStationsByPlayedSongResponse, SingleRadioStationByPlayedSongResult } from "../../api/radio-station/radio-stations-by-played-song";
 
 function RadioStationsByPlayedSongResults(params: { radioStationsByPlayedSongResponseHolder: ApiResponseHolder<RadioStationsByPlayedSongResponse> }) {
     const { radioStationsByPlayedSongResponseHolder } = params;
@@ -24,7 +24,7 @@ function RadioStationsByPlayedSongResults(params: { radioStationsByPlayedSongRes
     }
 
     const noResults = (<h2 className="text-xl text-center mt-8 font-bold">Sorry, no results...</h2>);
-    const radioStationResults = searchResults.data?.map(item => stationResult(item));
+    const radioStationResults = searchResults?.data.map((item: SingleRadioStationByPlayedSongResult) => stationResult(item));
 
     return (
         <section className="bg-gray-50">
@@ -45,18 +45,16 @@ function stationResult(item?: SingleRadioStationResult): JSX.Element {
     }
 
     return (
-        <div key={item.id}>
-            <Link href={`/radio-stations/${toSeoText(item.title)}/${item.id}`}>
-                <a className="block mx-2 md:mx-auto sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-2 md:mb-10 hover:bg-gray-100">
-                    <img src={item.logoUrl} alt={`Logo of ${item.title} radio station`} className="max-h-64 rounded-lg m-auto" />
-                    <div className="py-5 self-center sm:pt-0 sm:px-5 col-span-4 text-center md:text-left">
-                        <h2 className="text-gray-800 capitalize text-xl font-bold mb-5">{item.title}</h2>
-                        {item.website ? (<a href={item.website} target="_blank" className="capitalize underline inline-block pt-2">{item.website}</a>) : ''}
-                        <p>{item.description}</p>
-                    </div>
-                </a>
-            </Link>
-        </div>
+        <Link href={`/radio-stations/${toSeoText(item.title)}/${item.id}`} key={item.id}>
+            <a className="block mx-2 md:mx-auto sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-2 md:mb-10 hover:bg-gray-100">
+                <img src={item.logoUrl} alt={`Logo of ${item.title} radio station`} className="max-h-64 rounded-lg m-auto" />
+                <div className="py-5 self-center sm:pt-0 sm:px-5 col-span-4 text-center md:text-left">
+                    <h2 className="text-gray-800 capitalize text-xl font-bold mb-5">{item.title}</h2>
+                    {item.website ? (<a href={item.website} target="_blank" className="capitalize underline inline-block pt-2">{item.website}</a>) : ''}
+                    <p>{item.description}</p>
+                </div>
+            </a>
+        </Link>
     );
 }
 
