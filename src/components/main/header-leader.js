@@ -42,7 +42,7 @@ class HeaderLeader extends Component {
                                     </div>
                                     <div className="flex flex-col justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0 items-center">
                                         <div className="flex items-center m-2">
-                                            <a href="#" className="px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 transform border-2 rounded hover:bg-gray-700">Download App</a>
+                                            <a href={websiteConfig.androidAppDownloadUrl} target="_blank" className="px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 transform border-2 rounded hover:bg-gray-700">Download App</a>
                                         </div>
                                     </div>
                                 </div>

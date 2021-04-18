@@ -15,6 +15,7 @@ module.exports = {
         API_URL: process.env.NEXT_PUBLIC_API_URL,
         WEBSITE_NAME: process.env.NEXT_PUBLIC_WEBSITE_NAME,
         WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
+        ANDROID_APP_DOWNLOAD_URL: process.env.NEXT_PUBLIC_ANDROID_APP_DOWNLOAD_URL,
     },
     async rewrites() {
         return [

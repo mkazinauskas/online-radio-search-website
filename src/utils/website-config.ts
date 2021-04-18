@@ -15,7 +15,8 @@ export interface WebsiteConfig {
     dribbleLink: string,
     contactEmail: string,
     websiteName: string,
-    websiteUrl: string
+    websiteUrl: string,
+    androidAppDownloadUrl: string,
 }
 
 export default function extract(dataHolder: any): { websiteConfig: WebsiteConfig } {
@@ -29,7 +30,8 @@ export default function extract(dataHolder: any): { websiteConfig: WebsiteConfig
             dribbleLink: require(dataHolder, 'DRIBBLE_LINK'),
             contactEmail: require(dataHolder, 'CONTACT_EMAIL'),
             websiteName: require(dataHolder, 'WEBSITE_NAME'),
-            websiteUrl: require(dataHolder, 'WEBSITE_URL')
+            websiteUrl: require(dataHolder, 'WEBSITE_URL'),
+            androidAppDownloadUrl: require(dataHolder, 'ANDROID_APP_DOWNLOAD_URL'),
         }
     }
 }

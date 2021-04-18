@@ -54,7 +54,7 @@ function SongsPaginationComponent(params: SongsPaginationComponentParamsType) {
     }
 
     return (
-        <div className="pb-12 pt-6 mx-auto text-center">
+        <div className="col-span-5 pb-12 pt-6 mx-auto text-center">
             {buttons}
         </div>
     )
