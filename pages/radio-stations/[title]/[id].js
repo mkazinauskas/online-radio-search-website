@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Footer from '../../../src/components/footer';
 import { RadioStationInfo } from '../../../src/api/radio-station/radio-station-info';
 import { withRouter } from 'next/router'
-import RadioStationInfoPanel from '../../../src/components/radio-station/radio-station-info-panel';
+import RadioStationContainer from '../../../src/components/radio-station/radio-station-container';
 import { RadioStationStreams } from '../../../src/api/radio-station/radio-station-streams';
 import { RadioStationSongs } from '../../../src/api/radio-station/radio-station-songs';
 import { LastSearches } from '../../../src/api/last-searches/last-searhes';
@@ -42,7 +42,7 @@ class RadioStationPage extends Component {
 
         <NavBar websiteConfig={websiteConfig} />
 
-        <RadioStationInfoPanel
+        <RadioStationContainer
           radioStationResponseHolder={radioStationResponseHolder}
           radioStationStreamsResponseHolder={radioStationStreamsResponseHolder}
           radioStationSongsResponseHolder={radioStationSongsResponseHolder}

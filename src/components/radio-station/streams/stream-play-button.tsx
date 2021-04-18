@@ -1,9 +1,4 @@
-import React, { Component, FormEvent, useEffect } from 'react';
-import { Router, withRouter } from 'next/router';
-import { WithRouterProps } from 'next/dist/client/with-router';
-import { toSeoText, unSeoText } from '../../utils/seo-tools';
-import Paths from '../../paths';
-import { browser } from 'node:process';
+import React, { Component } from 'react';
 
 class StreamPlayButton extends Component {
 
@@ -13,13 +8,12 @@ class StreamPlayButton extends Component {
 
     audio: HTMLAudioElement | undefined;
 
-    constructor(props: any) {
+    constructor(props: { streamUrl: string }) {
         super(props);
         if (process.browser) {
             this.audio = new Audio(props.streamUrl);
         }
     }
-
 
     componentDidMount() {
         if (!this.audio) {
@@ -34,7 +28,6 @@ class StreamPlayButton extends Component {
         }
         this.audio.pause();
         this.audio.removeEventListener('ended', () => this.setState({ play: false }));
-
     }
 
     togglePlay = () => {
@@ -60,7 +53,6 @@ class StreamPlayButton extends Component {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     )}
-
                 </button>
             </div>
         );

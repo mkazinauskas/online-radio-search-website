@@ -1,4 +1,7 @@
-export function toSeoText(text: string) {
+export function toSeoText(text: string | undefined | null) {
+    if (text === undefined || text === null){
+        return text;
+    }
     return text.toString()
         .normalize('NFD')
         .replace(/[^0-9a-z \u0600-\u06FF]/gi, '')
