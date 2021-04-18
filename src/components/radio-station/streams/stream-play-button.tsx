@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-class StreamPlayButton extends Component {
+type StreamPlayButtonProps = {
+    streamUrl: string
+}
+
+class StreamPlayButton extends Component<StreamPlayButtonProps> {
 
     state = {
         play: false
@@ -8,7 +12,7 @@ class StreamPlayButton extends Component {
 
     audio: HTMLAudioElement | undefined;
 
-    constructor(props: { streamUrl: string }) {
+    constructor(props: StreamPlayButtonProps) {
         super(props);
         if (process.browser) {
             this.audio = new Audio(props.streamUrl);
