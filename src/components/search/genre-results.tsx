@@ -47,13 +47,13 @@ function result(item?: SingleGenreResult): JSX.Element {
     return (
         <div key={item.id}>
             <Link href={`/radio-stations/by-genre/${toSeoText(item.title)}/${item.id}`}>
-                <a className="block mx-2 md:mx-auto sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-2 md:mb-10 hover:bg-gray-100">
+                <span className="block mx-2 md:mx-auto sm:grid grid-cols-5 bg-white shadow-sm p-5 relative sm:p-2 rounded-lg lg:col-span-2 my-2 md:mb-10 hover:bg-gray-100 cursor-pointer">
                     <img src={item.logoUrl} alt={`Logo of ${item.title} radio station`} className="max-h-64 rounded-lg m-auto" />
                     <div className="py-5 self-center sm:pt-0 sm:px-5 col-span-4">
                         <h2 className="text-gray-800 capitalize text-xl font-bold mb-5 text-center md:text-left">{item.title}</h2>
                         <p className="text-center md:text-left">{item.description}</p>
                     </div>
-                </a>
+                </span>
             </Link>
         </div>
     );
