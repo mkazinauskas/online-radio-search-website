@@ -1,9 +1,9 @@
-name: Build Repo or PR
+name: Build PR
 
 on: [push, pull_request]
 
 jobs:
-  build-and-push:
+  build-pr:
     runs-on: ubuntu-latest
 
     steps:
