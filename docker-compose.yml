@@ -3,11 +3,12 @@ version: "3.3"
 services:
   online-radio-search-website:
     ports:
-      - "5000:3000"
+      - "3000:3000"
     build: .
     environment:
       - "NEXT_PUBLIC_CURRENT_ENV=Docker"
-      - "NEXT_PUBLIC_API_URL=https://api.onlineradiosearch.com"
+      - "NEXT_PUBLIC_PROXIED_API_URL=https://api.onlineradiosearch.com"
+      - "NEXT_PUBLIC_API_URL=http://localhost:3000/api"
       - "NEXT_PUBLIC_CONTACT_US_LINK=https://www.facebook.com/onlineradiosearch"
       - "NEXT_PUBLIC_FACEBOOK_LINK=https://www.facebook.com/onlineradiosearch"
       - "NEXT_PUBLIC_INSTAGRAM_LINK="

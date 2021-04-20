@@ -33,7 +33,7 @@ module.exports = {
         console.log(`Adding proxy from: "${proxiedUrl}" under "${apiUrl}"`);
         return [
             {
-                source: '/api/:path*',
+                source: `/api/:path*`,
                 destination: `${proxiedUrl}/:path*`
             }
         ]
