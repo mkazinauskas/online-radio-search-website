@@ -22,10 +22,19 @@ module.exports = {
         ANDROID_APP_DOWNLOAD_URL: process.env.NEXT_PUBLIC_ANDROID_APP_DOWNLOAD_URL,
     },
     async rewrites() {
+        const proxiedUrl = process.env.NEXT_PUBLIC_PROXIED_API_URL;
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+        if (proxiedUrl === undefined || !proxiedUrl) {
+            console.log('Proxying was turned off')
+            return [];
+        }
+
+        console.log(`Adding proxy from: "${proxiedUrl}" under "${apiUrl}"`);
         return [
             {
                 source: '/api/:path*',
-                destination: 'https://api.onlineradiosearch.com/:path*'
+                destination: `${proxiedUrl}/:path*`
             }
         ]
     },
