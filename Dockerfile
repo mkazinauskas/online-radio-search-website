@@ -16,17 +16,14 @@ COPY --from=build /build/ ./
 
 RUN ls -la
 
-# COPY --from=build /build/package*.json ./
-# COPY --from=build /build/.next ./.next
-# COPY --from=build /build/public ./public
-# COPY --from=build /build/.env ./
-# COPY --from=build /build/.env.production ./
-# COPY --from=build /build/next.config.js ./
+COPY --from=build /build/package.json ./
+COPY --from=build /build/.next ./.next
+COPY --from=build /build/public ./public
+COPY --from=build /build/.env ./
+COPY --from=build /build/.env.production ./
+COPY --from=build /build/next.config.js ./
 
-# COPY --from=build /build/tailwind.config.js ./
-# COPY --from=build /build/postcss.config.js ./
-
-# RUN npm install next
+RUN npm install next
 
 EXPOSE 3000
 CMD npm run start

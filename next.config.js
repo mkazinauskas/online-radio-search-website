@@ -1,7 +1,3 @@
-const withCSS = require("@zeit/next-css");
-
-module.exports = withCSS({});
-
 module.exports = {
     serverRuntimeConfig: {
         // Will only be available on the server side
