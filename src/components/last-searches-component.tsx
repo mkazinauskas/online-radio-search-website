@@ -33,7 +33,7 @@ function LastSearchesComponent(params: { lastSearhesResponseHolder: ApiResponseH
 
     const searchLinks = searches
         .map((search: LastSearch) => createLink(search))
-        .reduce((prev: any, curr: any) => [prev, ' - ', curr]);
+        .reduce((prev: any, curr: any) => [prev, (<span key=""> - </span>), curr], []);
 
     return (
         <div className="container mx-auto mt-1 md:mt-10">
