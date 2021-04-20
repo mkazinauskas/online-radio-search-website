@@ -16,11 +16,11 @@ function RadioStationStreamsPanel(params: { streams: RadioStationStream[] | unde
             <div className="hidden break-all lg:block lg:flex-1"><Link href={stream.url}><a target="_blank">{stream.url}</a></Link></div>
             <div className="flex-1">{stream.bitrate ? stream.bitrate : 'unknown'}</div>
             <div className="flex-1">{stream.type}</div>
-            <a href="#" className="focus:outline-none group p-3 md:pl-14">
+            {/* <a href="#" className="focus:outline-none group p-3 md:pl-14">
                 <svg className="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5" />
                 </svg>
-            </a>
+            </a> */}
         </li>
     )
     );
@@ -35,9 +35,9 @@ function RadioStationStreamsPanel(params: { streams: RadioStationStream[] | unde
                 <div className="font-bold hidden lg:block lg:flex-1">URL</div>
                 <div className="flex-1 font-bold">Bit Rate</div>
                 <div className="flex-1 font-bold">Type</div>
-                <div className="focus:outline-none group p-3 font-bold">
+                {/* <div className="focus:outline-none group p-3 font-bold">
                     Playlist
-                </div>
+                </div> */}
             </li>
             <ul className="text-xs sm:text-base divide-y cursor-default">
                 {streamsTable}
