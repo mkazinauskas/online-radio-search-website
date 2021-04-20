@@ -19,13 +19,21 @@ function SearchTypeTabsComponent(params: { query: string, activeTab: ActiveTabTy
 function createTabItem(title: string, isActive: boolean, linkBase: string, query: string) {
     const fullLink = `${linkBase}/${query.replaceAll(' ', '-').toLocaleLowerCase()}`;
 
-    return (
-        <Link href={fullLink}>
-            <a className={`block py-2 px-6 md:rounded-t-lg ${isActive ? 'bg-gray-100 cursor-not-allowed' : 'text-gray-500 bg-gray-200 hover:bg-blue-500 hover:text-white'}`}>
+    if (isActive) {
+        return (
+            <span className="block py-2 px-6 md:rounded-t-lg bg-gray-100 cursor-not-allowed">
                 {title}
-            </a>
-        </Link>
-    )
+            </span>
+        );
+    } else {
+        return (
+            <Link href={fullLink}>
+                <span className="block py-2 px-6 md:rounded-t-lg text-gray-500 bg-gray-200 hover:bg-blue-500 hover:text-white">
+                    {title}
+                </span>
+            </Link>
+        )
+    }
 }
 
 export enum ActiveTabType {
