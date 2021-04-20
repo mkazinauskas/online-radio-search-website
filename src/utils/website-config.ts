@@ -1,6 +1,6 @@
 function require(dataHolder: any, property: string): string {
     const value = dataHolder[property];
-    if (!value) {
+    if (value === undefined) {
         throw new Error(`'${property}' does not exist in configuration.`);
     }
     return value;

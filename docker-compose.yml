@@ -1,9 +1,20 @@
 version: "3.3"
 
 services:
-  nextjs:
+  online-radio-search-website:
     ports:
       - "5000:3000"
     build: .
     environment:
       - "NEXT_PUBLIC_CURRENT_ENV=Docker"
+      - "NEXT_PUBLIC_API_URL=https://api.onlineradiosearch.com"
+      - "NEXT_PUBLIC_CONTACT_US_LINK=https://www.facebook.com/onlineradiosearch"
+      - "NEXT_PUBLIC_FACEBOOK_LINK=https://www.facebook.com/onlineradiosearch"
+      - "NEXT_PUBLIC_INSTAGRAM_LINK="
+      - "NEXT_PUBLIC_TWITTER_LINK="
+      - "NEXT_PUBLIC_GITHUB_LINK=https://github.com/mkazinauskas/online-radio-search-website"
+      - "NEXT_PUBLIC_DRIBBLE_LINK="
+      - "NEXT_PUBLIC_WEBSITE_URL=https://onlineradiosearch.com"
+      - "NEXT_PUBLIC_WEBSITE_NAME=OnlineRadioSearch.com"
+      - "NEXT_PUBLIC_CONTACT_EMAIL=onlineradiosearch.com@gmail.com"
+      - "NEXT_PUBLIC_ANDROID_APP_DOWNLOAD_URL=https://play.google.com/store/apps/details?id=com.modakoda.onlineradiosearchmobile"
